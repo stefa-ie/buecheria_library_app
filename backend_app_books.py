@@ -23,7 +23,9 @@ class Book(Base):
     BookID = Column(Integer, primary_key=True, unique=True, index=True)
     Title = Column(String, index=True)
     AuthorID = Column(Integer, ForeignKey("authors.AuthorID"), index=True)
+    Isbn = Column(String, unique=True, index=True)
     PublicationDate = Column(DateTime, index=True)
+    Genre = Column(String, index=True)
 
     # Book belongs to one Author
     author = relationship("Author", back_populates="books")
@@ -46,7 +48,9 @@ class BookResponse(BaseModel):
     BookID: int
     Title: str
     AuthorID: int
+    Isbn: str
     PublicationDate: datetime
+    Genre: str
 
     class Config:
         orm_mode = True
@@ -72,7 +76,9 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
 class BookCreate(BaseModel):
     Title: str
     AuthorID: int
+    Isbn: str
     PublicationDate: datetime
+    Genre: str
 
 
 @app.post("/books", response_model=BookResponse)
@@ -81,8 +87,11 @@ def create_book(book: BookCreate, db: Session = Depends(get_db)):
     db_book = Book(
         Title=book.Title,
         AuthorID=book.AuthorID,
-        PublicationDate=book.PublicationDate
+        Isbn=book.Isbn,
+        PublicationDate=book.PublicationDate,
+        Genre=book.Genre
     )
+  
     db.add(db_book)
     db.commit()
     db.refresh(db_book)
@@ -98,7 +107,9 @@ def update_book(book_id: int, book: BookCreate, db: Session = Depends(get_db)):
     
     db_book.Title = book.Title
     db_book.AuthorID = book.AuthorID
+    db_book.Isbn = book.Isbn
     db_book.PublicationDate = book.PublicationDate
+    db_book.Genre = book.Genre
     
     db.commit()
     db.refresh(db_book)
