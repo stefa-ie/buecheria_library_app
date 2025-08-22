@@ -1,20 +1,12 @@
-from sqlalchemy import create_engine, Column, Integer, String, DateTime
+from database import Base, engine, get_db
 from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, Session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from pydantic import BaseModel
+from sqlalchemy.orm import relationship, Session, sessionmaker
 from typing import List, Optional
 
 from fastapi import FastAPI, Depends, HTTPException
-
-app = FastAPI()
-
-DATABASE_URL = "sqlite:///./buecheria.db"
-
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(bind=engine)
-Base = declarative_base()
 
 
 class Author(Base):
