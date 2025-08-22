@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import APIRouter, FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
 from typing import List, Optional
@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from database import Base, engine, get_db
 from sqlalchemy import Column, Integer, String, DateTime
 
-app = FastAPI()
+router = APIRouter()
 
 class Member(Base):
     __tablename__ = "members"

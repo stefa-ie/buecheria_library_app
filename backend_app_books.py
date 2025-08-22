@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import APIRouter, FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime
 from typing import List, Optional
@@ -7,7 +7,7 @@ from database import Base, engine, get_db
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-app = FastAPI()
+router = APIRouter()
 
 class Book(Base):
     __tablename__ = "books"
