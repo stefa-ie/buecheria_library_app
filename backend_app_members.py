@@ -40,13 +40,13 @@ class MemberResponse(BaseModel):
         orm_mode = True
 
 
-@app.get("/members", response_model=List[MemberResponse])
+@router.get("/members", response_model=List[MemberResponse])
 # Endpoint to read all members
 def read_members(db: Session = Depends(get_db)):
     members = db.query(Member).all()
     return members
 
-@app.get("/members/{member_id}", response_model=MemberResponse)
+@router.get("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to read specific member by ID
 def read_member(member_id: int, db: Session = Depends(get_db)):
     member = db.query(Member).filter(Member.MemberID == member_id).first()
@@ -66,7 +66,7 @@ class MemberCreate(BaseModel):
     JoinDate: datetime
     MembershipStatus: str
 
-@app.post("/members", response_model=MemberResponse)
+@router.post("/members", response_model=MemberResponse)
 # Endpoint to create a new member
 def create_member(member: MemberCreate, db: Session = Depends(get_db)):
     db_member = Member(
@@ -97,7 +97,7 @@ class MemberUpdate(BaseModel):
     MembershipStatus: Optional[str] = None
 
 
-@app.put("/members/{member_id}", response_model=MemberResponse)
+@router.put("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to update an existing member
 def update_member(member_id: int, member: MemberUpdate, db: Session = Depends(get_db)):
     db_member = db.query(Member).filter(Member.MemberID == member_id).first()
@@ -118,7 +118,7 @@ def update_member(member_id: int, member: MemberUpdate, db: Session = Depends(ge
     return db_member
 
 
-@app.delete("/members/{member_id}", response_model=MemberResponse)
+@router.delete("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to delete a member
 def delete_member(member_id: int, db: Session = Depends(get_db)):
     db_member = db.query(Member).filter(Member.MemberID == member_id).first()

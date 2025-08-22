@@ -35,14 +35,14 @@ class AuthorResponse(BaseModel):
         orm_mode = True
 
 
-@app.get("/authors", response_model=List[AuthorResponse])
+@router.get("/authors", response_model=List[AuthorResponse])
 # Endpoint to read all authors
 def read_authors(db: Session = Depends(get_db)):
     authors = db.query(Author).all()
     return authors
 
 
-@app.get("/authors/{author_id}", response_model=AuthorResponse)
+@router.get("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to read specific author by ID
 def read_author(author_id: int, db: Session = Depends(get_db)):
     author = db.query(Author).filter(Author.AuthorID == author_id).first()
@@ -58,7 +58,7 @@ class AuthorCreate(BaseModel):
     BirthDate: datetime
         
 
-@app.post("/authors", response_model=AuthorResponse)
+@router.post("/authors", response_model=AuthorResponse)
 # Endpoint to create new author
 def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
     db_author = Author(LastName=author.LastName, FirstName=author.FirstName, BirthDate=author.BirthDate)
@@ -75,7 +75,7 @@ class AuthorUpdate(BaseModel):
     BirthDate: Optional[datetime] = None
 
 
-@app.put("/authors/{author_id}", response_model=AuthorResponse)
+@router.put("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to update an existing author
 def update_author(author_id: int, author: AuthorUpdate, db: Session = Depends(get_db)):
     db_author = db.query(Author).filter(Author.AuthorID == author_id).first()
@@ -90,7 +90,7 @@ def update_author(author_id: int, author: AuthorUpdate, db: Session = Depends(ge
     return db_author
 
 
-@app.delete("/authors/{author_id}", response_model=AuthorResponse)
+@router.delete("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to delete an author
 def delete_author(author_id: int, db: Session = Depends(get_db)):
     db_author = db.query(Author).filter(Author.AuthorID == author_id).first()

@@ -40,14 +40,14 @@ class BookResponse(BaseModel):
         orm_mode = True
 
 
-@app.get("/books", response_model=List[BookResponse])
+@router.get("/books", response_model=List[BookResponse])
 # Endpoint to read all books
 def read_books(db: Session = Depends(get_db)):
     books = db.query(Book).all()
     return books
 
 
-@app.get("/books/{book_id}", response_model=BookResponse)
+@router.get("/books/{book_id}", response_model=BookResponse)
 # Endpoint to read specific book by ID
 def read_book(book_id: int, db: Session = Depends(get_db)):
     book = db.query(Book).filter(Book.BookID == book_id).first()
@@ -65,7 +65,7 @@ class BookCreate(BaseModel):
     Genre: str
 
 
-@app.post("/books", response_model=BookResponse)
+@router.post("/books", response_model=BookResponse)
 # Endpoint to create a new book
 def create_book(book: BookCreate, db: Session = Depends(get_db)):
     db_book = Book(
@@ -91,7 +91,7 @@ class BookUpdate(BaseModel):
     Genre: Optional[str] = None
 
 
-@app.put("/books/{book_id}", response_model=BookResponse)
+@router.put("/books/{book_id}", response_model=BookResponse)
 # Endpoint to update an existing book
 def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book = db.query(Book).filter(Book.BookID == book_id).first()
@@ -109,7 +109,7 @@ def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     return db_book
 
 
-@app.delete("/books/{book_id}", response_model=BookResponse)
+@router.delete("/books/{book_id}", response_model=BookResponse)
 # Endpoint to delete a book
 def delete_book(book_id: int, db: Session = Depends(get_db)):
     db_book = db.query(Book).filter(Book.BookID == book_id).first()
