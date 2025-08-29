@@ -1,44 +1,11 @@
-from fastapi import APIRouter, FastAPI, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel
-from database import Base, engine, get_db
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+from typing import List
+from backend.database import get_db
+from backend.models.book import Book
+from backend.schemas.book import BookResponse, BookCreate, BookUpdate
 
 router = APIRouter()
-
-class Book(Base):
-    __tablename__ = "books"
-
-    BookID = Column(Integer, primary_key=True, unique=True, index=True)
-    Title = Column(String, index=True)
-    AuthorID = Column(Integer, ForeignKey("authors.AuthorID"), index=True)
-    Isbn = Column(String, unique=True, index=True)
-    PublicationDate = Column(DateTime, index=True)
-    Genre = Column(String, index=True)
-
-    # Book belongs to one Author
-    author = relationship("Author", back_populates="books")
-
-
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
-
-# Pydantic model for response
-class BookResponse(BaseModel):
-    BookID: int
-    Title: str
-    AuthorID: int
-    Isbn: str
-    PublicationDate: datetime
-    Genre: str
-
-    class Config:
-        orm_mode = True
-
 
 @router.get("/books", response_model=List[BookResponse])
 # Endpoint to read all books
@@ -56,15 +23,6 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
     return book
 
 
-# Pydantic model for creating a new book
-class BookCreate(BaseModel):
-    Title: str
-    AuthorID: int
-    Isbn: str
-    PublicationDate: datetime
-    Genre: str
-
-
 @router.post("/books", response_model=BookResponse)
 # Endpoint to create a new book
 def create_book(book: BookCreate, db: Session = Depends(get_db)):
@@ -80,15 +38,6 @@ def create_book(book: BookCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_book)
     return db_book
-
-
-# Pydantic model for updating existing book
-class BookUpdate(BaseModel):
-    Title: Optional[str] = None
-    AuthorID: Optional[int] = None
-    Isbn: Optional[str] = None
-    PublicationDate: Optional[datetime] = None
-    Genre: Optional[str] = None
 
 
 @router.put("/books/{book_id}", response_model=BookResponse)

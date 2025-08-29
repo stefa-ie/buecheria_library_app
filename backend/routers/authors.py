@@ -1,39 +1,11 @@
-from fastapi import APIRouter, FastAPI, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel
-from database import Base, engine, get_db
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import relationship
+from typing import List
+from backend.database import get_db
+from backend.models.author import Author
+from backend.schemas.author import AuthorResponse, AuthorCreate, AuthorUpdate
 
 router = APIRouter()
-
-class Author(Base):
-    __tablename__ = "authors"
-
-    AuthorID = Column(Integer, primary_key=True, unique=True, index=True)
-    LastName = Column(String, index=True)
-    FirstName = Column(String, index=True)
-    BirthDate = Column(DateTime, index=True)
-
-    # One-to-many relationship (Author -> Books)
-    books = relationship("Book", back_populates="author")
-
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
-
-# Pydantic model for response
-class AuthorResponse(BaseModel):
-    AuthorID: int
-    LastName: str
-    FirstName: str
-    BirthDate: datetime
-
-    class Config:
-        orm_mode = True
-
 
 @router.get("/authors", response_model=List[AuthorResponse])
 # Endpoint to read all authors
@@ -51,13 +23,6 @@ def read_author(author_id: int, db: Session = Depends(get_db)):
     return author
 
 
-# Pydantic model for creating new author
-class AuthorCreate(BaseModel):
-    LastName: str
-    FirstName: str
-    BirthDate: datetime
-        
-
 @router.post("/authors", response_model=AuthorResponse)
 # Endpoint to create new author
 def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
@@ -66,13 +31,6 @@ def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_author)
     return db_author
-
-
-# Pydantic model for updating existing author
-class AuthorUpdate(BaseModel):
-    LastName: Optional[str] = None
-    FirstName: Optional[str] = None
-    BirthDate: Optional[datetime] = None
 
 
 @router.put("/authors/{author_id}", response_model=AuthorResponse)

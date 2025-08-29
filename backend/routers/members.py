@@ -1,44 +1,11 @@
-from fastapi import APIRouter, FastAPI, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel
-from database import Base, engine, get_db
-from sqlalchemy import Column, Integer, String, DateTime
+from typing import List
+from backend.database import get_db
+from backend.models.member import Member
+from backend.schemas.member import MemberResponse, MemberCreate, MemberUpdate
 
 router = APIRouter()
-
-class Member(Base):
-    __tablename__ = "members"
-
-    MemberID = Column(Integer, primary_key=True, unique=True, index=True)
-    LastName = Column(String, index=True)
-    FirstName = Column(String, index=True)
-    Address = Column(String, index=True)
-    Email = Column(String, unique=True, index=True)
-    Phone = Column(String, index=True)
-    BirthDate = Column(DateTime, index=True)
-    JoinDate = Column(DateTime, index=True)
-    MembershipStatus = Column(String, index=True)
-
-# Create database tables
-Base.metadata.create_all(bind=engine)
-
-# Pydantic model for response
-class MemberResponse(BaseModel):
-    MemberID: int
-    LastName: str
-    FirstName: str
-    Address: str
-    Email: str
-    Phone: str
-    BirthDate: datetime
-    JoinDate: datetime
-    MembershipStatus: str
-
-    class Config:
-        orm_mode = True
-
 
 @router.get("/members", response_model=List[MemberResponse])
 # Endpoint to read all members
@@ -54,17 +21,6 @@ def read_member(member_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Member not found")
     return member
 
-
-# Pydantic model for creating a new member
-class MemberCreate(BaseModel):
-    LastName: str
-    FirstName: str
-    Address: str
-    Email: str
-    Phone: str
-    BirthDate: datetime
-    JoinDate: datetime
-    MembershipStatus: str
 
 @router.post("/members", response_model=MemberResponse)
 # Endpoint to create a new member
@@ -83,18 +39,6 @@ def create_member(member: MemberCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_member)
     return db_member
-
-
-# Pydantic model for updating existing member
-class MemberUpdate(BaseModel):
-    LastName: Optional[str] = None
-    FirstName: Optional[str] = None
-    Address: Optional[str] = None
-    Email: Optional[str] = None
-    Phone: Optional[str] = None
-    BirthDate: Optional[datetime] = None
-    JoinDate: Optional[datetime] = None
-    MembershipStatus: Optional[str] = None
 
 
 @router.put("/members/{member_id}", response_model=MemberResponse)
