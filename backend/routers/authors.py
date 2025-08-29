@@ -7,15 +7,15 @@ from backend.schemas.author import AuthorResponse, AuthorCreate, AuthorUpdate
 
 router = APIRouter()
 
-@router.get("/authors", response_model=List[AuthorResponse])
 # Endpoint to read all authors
+@router.get("/authors", response_model=List[AuthorResponse])
 def read_authors(db: Session = Depends(get_db)):
     authors = db.query(Author).all()
     return authors
 
 
-@router.get("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to read specific author by ID
+@router.get("/authors/{author_id}", response_model=AuthorResponse)
 def read_author(author_id: int, db: Session = Depends(get_db)):
     author = db.query(Author).filter(Author.AuthorID == author_id).first()
     if author is None:
@@ -23,8 +23,8 @@ def read_author(author_id: int, db: Session = Depends(get_db)):
     return author
 
 
-@router.post("/authors", response_model=AuthorResponse)
 # Endpoint to create new author
+@router.post("/authors", response_model=AuthorResponse)
 def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
     db_author = Author(LastName=author.LastName, FirstName=author.FirstName, BirthDate=author.BirthDate)
     db.add(db_author)
@@ -33,8 +33,8 @@ def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
     return db_author
 
 
-@router.put("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to update an existing author
+@router.put("/authors/{author_id}", response_model=AuthorResponse)
 def update_author(author_id: int, author: AuthorUpdate, db: Session = Depends(get_db)):
     db_author = db.query(Author).filter(Author.AuthorID == author_id).first()
     if db_author is None:
@@ -48,8 +48,8 @@ def update_author(author_id: int, author: AuthorUpdate, db: Session = Depends(ge
     return db_author
 
 
-@router.delete("/authors/{author_id}", response_model=AuthorResponse)
 # Endpoint to delete an author
+@router.delete("/authors/{author_id}", response_model=AuthorResponse)
 def delete_author(author_id: int, db: Session = Depends(get_db)):
     db_author = db.query(Author).filter(Author.AuthorID == author_id).first()
     if db_author is None:

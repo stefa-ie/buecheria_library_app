@@ -10,7 +10,7 @@ class AuthorResponse(BaseModel):
     BirthDate: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Pydantic model for creating new author

@@ -7,14 +7,14 @@ from backend.schemas.member import MemberResponse, MemberCreate, MemberUpdate
 
 router = APIRouter()
 
-@router.get("/members", response_model=List[MemberResponse])
 # Endpoint to read all members
+@router.get("/members", response_model=List[MemberResponse])
 def read_members(db: Session = Depends(get_db)):
     members = db.query(Member).all()
     return members
 
-@router.get("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to read specific member by ID
+@router.get("/members/{member_id}", response_model=MemberResponse)
 def read_member(member_id: int, db: Session = Depends(get_db)):
     member = db.query(Member).filter(Member.MemberID == member_id).first()
     if member is None:
@@ -22,8 +22,8 @@ def read_member(member_id: int, db: Session = Depends(get_db)):
     return member
 
 
-@router.post("/members", response_model=MemberResponse)
 # Endpoint to create a new member
+@router.post("/members", response_model=MemberResponse)
 def create_member(member: MemberCreate, db: Session = Depends(get_db)):
     db_member = Member(
         LastName=member.LastName,
@@ -41,8 +41,8 @@ def create_member(member: MemberCreate, db: Session = Depends(get_db)):
     return db_member
 
 
-@router.put("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to update an existing member
+@router.put("/members/{member_id}", response_model=MemberResponse)
 def update_member(member_id: int, member: MemberUpdate, db: Session = Depends(get_db)):
     db_member = db.query(Member).filter(Member.MemberID == member_id).first()
     if db_member is None:
@@ -62,8 +62,8 @@ def update_member(member_id: int, member: MemberUpdate, db: Session = Depends(ge
     return db_member
 
 
-@router.delete("/members/{member_id}", response_model=MemberResponse)
 # Endpoint to delete a member
+@router.delete("/members/{member_id}", response_model=MemberResponse)
 def delete_member(member_id: int, db: Session = Depends(get_db)):
     db_member = db.query(Member).filter(Member.MemberID == member_id).first()
     if db_member is None:

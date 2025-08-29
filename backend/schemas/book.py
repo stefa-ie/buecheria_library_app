@@ -12,7 +12,7 @@ class BookResponse(BaseModel):
     Genre: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 # Pydantic model for creating a new book

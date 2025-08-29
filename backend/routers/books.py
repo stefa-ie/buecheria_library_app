@@ -7,15 +7,15 @@ from backend.schemas.book import BookResponse, BookCreate, BookUpdate
 
 router = APIRouter()
 
-@router.get("/books", response_model=List[BookResponse])
 # Endpoint to read all books
+@router.get("/books", response_model=List[BookResponse])
 def read_books(db: Session = Depends(get_db)):
     books = db.query(Book).all()
     return books
 
 
-@router.get("/books/{book_id}", response_model=BookResponse)
 # Endpoint to read specific book by ID
+@router.get("/books/{book_id}", response_model=BookResponse)
 def read_book(book_id: int, db: Session = Depends(get_db)):
     book = db.query(Book).filter(Book.BookID == book_id).first()
     if book is None:
@@ -23,8 +23,8 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
     return book
 
 
-@router.post("/books", response_model=BookResponse)
 # Endpoint to create a new book
+@router.post("/books", response_model=BookResponse)
 def create_book(book: BookCreate, db: Session = Depends(get_db)):
     db_book = Book(
         Title=book.Title,
@@ -40,8 +40,8 @@ def create_book(book: BookCreate, db: Session = Depends(get_db)):
     return db_book
 
 
-@router.put("/books/{book_id}", response_model=BookResponse)
 # Endpoint to update an existing book
+@router.put("/books/{book_id}", response_model=BookResponse)
 def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book = db.query(Book).filter(Book.BookID == book_id).first()
     if db_book is None:
@@ -58,8 +58,8 @@ def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     return db_book
 
 
-@router.delete("/books/{book_id}", response_model=BookResponse)
 # Endpoint to delete a book
+@router.delete("/books/{book_id}", response_model=BookResponse)
 def delete_book(book_id: int, db: Session = Depends(get_db)):
     db_book = db.query(Book).filter(Book.BookID == book_id).first()
     if db_book is None:
