@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d0bac755-0875-4ec2-a3f9-fbd769c98482" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/author.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/author.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routers/authors.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routers/authors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routers/books.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routers/books.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routers/members.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routers/members.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/schemas/author.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/schemas/author.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/schemas/book.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/schemas/book.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/schemas/member.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/schemas/member.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
