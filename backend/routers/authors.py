@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from backend.database import get_db
+from backend.database.database import get_db
 from backend.models.author import Author
 from backend.schemas.author import AuthorResponse, AuthorCreate, AuthorUpdate
 

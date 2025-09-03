@@ -1,4 +1,4 @@
-from backend.database import Base
+from backend.database.database import Base
 from sqlalchemy import Column, Integer, String, DateTime
 
 class Member(Base):

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from backend.database import Base, engine
+from backend.database.database import Base, engine
 from backend.routers import authors, books, members
 
 # Create database tables
