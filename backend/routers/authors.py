@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from backend.database.database import get_db
 from backend.models.author import Author
-from backend.schemas.author import AuthorResponse, AuthorCreate, AuthorUpdate
+from backend.schemas.author import AuthorResponse, AuthorCreate, AuthorUpdate, AuthorDelete
 
 router = APIRouter()
 
@@ -58,5 +58,4 @@ def delete_author(author_id: int, db: Session = Depends(get_db)):
     db.delete(db_author)
     db.commit()
     return db_author
-
 

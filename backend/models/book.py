@@ -12,5 +12,8 @@ class Book(Base):
     PublicationDate = Column(DateTime, index=True)
     Genre = Column(String, index=True)
 
-    # Book belongs to one Author
+    # Many-to-one relationship (Books -> Author)
     author = relationship("Author", back_populates="books")
+    # One-to-many relationship (Book -> Loans)
+    loans = relationship("Loan", back_populates="book")
+

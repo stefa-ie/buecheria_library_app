@@ -40,3 +40,4 @@ class MemberUpdate(BaseModel):
     BirthDate: Optional[datetime] = None
     JoinDate: Optional[datetime] = None
     MembershipStatus: Optional[str] = None
+

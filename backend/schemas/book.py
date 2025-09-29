@@ -31,3 +31,4 @@ class BookUpdate(BaseModel):
     Isbn: Optional[str] = None
     PublicationDate: Optional[datetime] = None
     Genre: Optional[str] = None
+
