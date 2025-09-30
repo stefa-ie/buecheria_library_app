@@ -10,12 +10,11 @@ export default function AuthorForm({ onAuthorCreated }) {
 
     // Construct new author object
     const newAuthor = {
-        lastName,
-        firstName,
-        birthdate,
+        LastName: lastName,
+        FirstName: firstName,
+        BirthDate: birthdate,
     };
 
-    // 
 
     // Handle form submission
     const handleSubmit = async (e) => {
