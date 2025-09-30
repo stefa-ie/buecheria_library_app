@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from backend.database.database import Base, engine
 from backend.routers import authors, books, members, loans
 
@@ -6,6 +7,15 @@ from backend.routers import authors, books, members, loans
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Buecheria API")
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 #Register routers

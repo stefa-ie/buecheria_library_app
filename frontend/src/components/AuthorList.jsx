@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchAuthors } from "../api/authors";
 
+// AuthorList component to display a list of authors
 export default function AuthorList() {
     const [authors, setAuthors] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
@@ -30,7 +31,7 @@ export default function AuthorList() {
             <ul>
                 {authors.map((author) => (
                     <li key={author.id}>
-                        Author Name: {author.name} | Birthdate: {author.birthdate}
+                        Author Last Name: {author.lastName} | Author First Name: {author.firstName} | Birthdate: {author.birthdate}
                     </li>
                 ))}
             </ul>

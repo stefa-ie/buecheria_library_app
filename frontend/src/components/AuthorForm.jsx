@@ -1,19 +1,33 @@
 import React from "react";
+import { createAuthor } from "../api/authors";
 
 
 // AuthorForm component to add a new author
 export default function AuthorForm({ onAuthorCreated }) {
-    const [name, setName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
     const [birthdate, setBirthdate] = React.useState("");
+
+    // Construct new author object
+    const newAuthor = {
+        lastName,
+        firstName,
+        birthdate,
+    };
+
+    // 
 
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
-            onAuthorCreated(newAuthor);
-            setName("");
-            setBirthdate("");
+            createAuthor(newAuthor).then((createdAuthor) => {
+                onAuthorCreated(createdAuthor);
+                // Clear form fields
+                setLastName("");
+                setFirstName("");
+                setBirthdate("");
+            });
         } catch (error) {
             console.error("Error creating author:", error);
         }
@@ -22,11 +36,20 @@ export default function AuthorForm({ onAuthorCreated }) {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label>Name:</label>
+                <label>Last Name:</label>
                 <input
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                />
+            </div>
+            <div>
+                <label>First Name:</label>
+                <input
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                     required
                 />
             </div>
