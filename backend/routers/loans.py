@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from backend.database.database import get_db
 from backend.models.loan import Loan
-from backend.schemas.loan import LoanResponse, LoanCreate, LoanUpdate, LoanDelete
+from backend.schemas.loan import LoanResponse, LoanCreate, LoanUpdate
 
 router = APIRouter()
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { createLoan } from "../api/authors";
+
 
 // AuthorForm component to add a new author
 export default function AuthorForm({ onAuthorCreated }) {
@@ -10,7 +10,7 @@ export default function AuthorForm({ onAuthorCreated }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const newAuthor = await createLoan({ name, birthdate });
+            
             onAuthorCreated(newAuthor);
             setName("");
             setBirthdate("");
