@@ -1,5 +1,5 @@
 from backend.database.database import Base
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Date, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 class Book(Base):
@@ -9,7 +9,7 @@ class Book(Base):
     Title = Column(String, index=True)
     AuthorID = Column(Integer, ForeignKey("authors.AuthorID"), index=True)
     Isbn = Column(String, unique=True, index=True)
-    PublicationDate = Column(DateTime, index=True)
+    PublicationDate = Column(Date, index=True)
     Genre = Column(String, index=True)
 
     # Many-to-one relationship (Books -> Author)

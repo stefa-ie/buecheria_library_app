@@ -1,5 +1,5 @@
 from backend.database.database import Base
-from sqlalchemy import Column, Integer, String, DateTime
+from sqlalchemy import Column, Integer, String, Date, DateTime
 from sqlalchemy.orm import relationship
 
 class Member(Base):
@@ -11,8 +11,8 @@ class Member(Base):
     Address = Column(String, index=True)
     Email = Column(String, unique=True, index=True)
     Phone = Column(String, index=True)
-    BirthDate = Column(DateTime, index=True)
-    JoinDate = Column(DateTime, index=True)
+    BirthDate = Column(Date, index=True)
+    JoinDate = Column(Date, index=True)
     MembershipStatus = Column(String, index=True)
 
     # One-to-many relationship (Member -> Loans)

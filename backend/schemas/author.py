@@ -26,4 +26,4 @@ class AuthorUpdate(BaseModel):
     FirstName: Optional[str] = None
     BirthDate: Optional[date] = None
     
-     
+    
