@@ -1,4 +1,4 @@
-from sqlalchemy import Date
+from datetime import date
 from typing import Optional
 from pydantic import BaseModel
 from backend.schemas.author import AuthorResponse
@@ -9,7 +9,7 @@ class BookResponse(BaseModel):
     Title: str
     AuthorID: int
     Isbn: str
-    PublicationDate: Date
+    PublicationDate: date
     Genre: str
     author: AuthorResponse  # nested author info
 
@@ -22,7 +22,7 @@ class BookCreate(BaseModel):
     Title: str
     AuthorID: int
     Isbn: str
-    PublicationDate: Date
+    PublicationDate: date
     Genre: str
 
 
@@ -31,6 +31,6 @@ class BookUpdate(BaseModel):
     Title: Optional[str] = None
     AuthorID: Optional[int] = None
     Isbn: Optional[str] = None
-    PublicationDate: Optional[Date] = None
+    PublicationDate: Optional[date] = None
     Genre: Optional[str] = None
 

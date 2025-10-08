@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.database.database import Base, engine
-from backend.routers import authors, books, members, loans
+from database.database import Base, engine
+from routers import authors, books, members, loans
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -27,5 +27,5 @@ app.include_router(loans.router, prefix="/api", tags=["Loans"])
 
 @app.get("/")
 def home():
-    return {"message": "hello"}
+    return {"message": "Welcome to the Library API"}
 
