@@ -1,6 +1,6 @@
 import React from "react";
-import AuthorForm from "../components/AuthorForm";
-import AuthorList from "../components/AuthorList";
+import AuthorForm from "../components/author_components/AuthorForm";
+import AuthorList from "../components/author_components/AuthorList";
 import { fetchAuthors } from "../api/authors";
 
 export default function AuthorsPage() {
@@ -21,7 +21,7 @@ export default function AuthorsPage() {
             }
         }
         loadAuthors();
-    }, [authors]);
+    }, []);
 
     if (loading) return <p>Loading authors...</p>;
     if (error) return <p>Error: {error}</p>;
