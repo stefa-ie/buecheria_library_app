@@ -2,11 +2,25 @@ const API_URL = 'http://localhost:5000/api';
 
 // Fetch all books
 export async function fetchBooks() {
-    const response = await fetch(`${API_URL}/books`);
-    if (!response.ok) {
-        throw new Error('Failed to fetch books');
+    try {
+        console.log('Fetching from:', `${API_URL}/books`);
+        const response = await fetch(`${API_URL}/books`);
+        console.log('Response status:', response.status);
+        console.log('Response ok:', response.ok);
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Error response:', errorText);
+            throw new Error(`Failed to fetch books: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Fetched data:', data);
+        return data;
+    } catch (error) {
+        console.error('Fetch error details:', error);
+        throw error;
     }
-    return response.json();
 }
 
 

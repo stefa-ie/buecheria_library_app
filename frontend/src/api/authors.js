@@ -1,4 +1,4 @@
-const API_URL = 'https://buecheria-library-app.onrender.com/api';
+const API_URL = 'http://localhost:5000/api';
 
 // Fetch all authors
 export async function fetchAuthors() {
