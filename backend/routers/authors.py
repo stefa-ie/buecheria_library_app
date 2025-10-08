@@ -26,7 +26,11 @@ def read_author(author_id: int, db: Session = Depends(get_db)):
 # Endpoint to create new author
 @router.post("/authors", response_model=AuthorResponse)
 def create_author(author: AuthorCreate, db: Session = Depends(get_db)):
-    db_author = Author(LastName=author.LastName, FirstName=author.FirstName, BirthDate=author.BirthDate)
+    db_author = Author(
+        LastName=author.LastName, 
+        FirstName=author.FirstName, 
+        BirthDate=author.BirthDate
+    )
     db.add(db_author)
     db.commit()
     db.refresh(db_author)
@@ -43,6 +47,7 @@ def update_author(author_id: int, author: AuthorUpdate, db: Session = Depends(ge
     db_author.LastName = author.LastName if author.LastName is not None else db_author.LastName
     db_author.FirstName = author.FirstName if author.FirstName is not None else db_author.FirstName
     db_author.BirthDate = author.BirthDate if author.BirthDate is not None else db_author.BirthDate
+    
     db.commit()
     db.refresh(db_author)
     return db_author
