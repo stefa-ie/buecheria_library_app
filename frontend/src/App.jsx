@@ -6,7 +6,7 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={"<h1>Welcome to the Library Management System</h1>}"}/> 
+                <Route path="/" element={<h1>Welcome to the Library Management System</h1>}/> 
                 <Route path="/authors" element={<AuthorsPage />} />
                 <Route path="/books" element={<BooksPage />} /> 
             </Routes>

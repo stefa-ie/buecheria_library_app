@@ -2,11 +2,24 @@ const API_URL = 'http://localhost:5000/api';
 
 // Fetch all authors
 export async function fetchAuthors() {
-    const response = await fetch(`${API_URL}/authors`);
-    if (!response.ok) {
-        throw new Error('Failed to fetch authors');
+    try {
+        console.log('Fetching authors from:', `${API_URL}/authors`);
+        const response = await fetch(`${API_URL}/authors`);
+        console.log('Response:', response);
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Error response body:', errorText);
+            throw new Error(`Failed to fetch authors: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Authors data:', data);
+        return data;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
     }
-    return response.json();
 }
 
 

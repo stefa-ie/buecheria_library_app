@@ -62,7 +62,12 @@ export default function AuthorForm({ onAuthorCreated }) {
                     required
                 />
             </div>
-            <button type="submit">Add Author</button>
+            <button 
+                type="submit"
+                className="ml-0 px-3 py-0.3 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+                Add Author
+            </button>
         </form>
     );
 }

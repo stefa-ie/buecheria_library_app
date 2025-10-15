@@ -13,6 +13,7 @@ export default function BooksPage() {
         async function loadBooks() {
             try {
                 const data = await fetchBooks();
+                console.log("Fetched books:", data);
                 setBooks(data);
             } catch (err) {
                 setError(err.message);

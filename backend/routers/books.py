@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from backend.database.database import get_db
-from backend.models.book import Book
-from backend.schemas.book import BookResponse, BookCreate, BookUpdate
-from backend.models.author import Author
+from database.database import get_db
+from models.book import Book
+from schemas.book import BookResponse, BookCreate, BookUpdate
+from models.author import Author
 
 router = APIRouter()
 

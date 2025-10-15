@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from backend.database.database import get_db
-from backend.models.loan import Loan
-from backend.schemas.loan import LoanResponse, LoanCreate, LoanUpdate
+from database.database import get_db
+from models.loan import Loan
+from schemas.loan import LoanResponse, LoanCreate, LoanUpdate
 
 router = APIRouter()
 

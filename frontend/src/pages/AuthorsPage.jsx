@@ -33,8 +33,8 @@ export default function AuthorsPage() {
     };
 
     return (
-        <div>
-            <h1>Authors</h1>
+        <div className="bg-gray-400 p-4 m-8">
+            <h1 className="text-4xl italic">Authors</h1>
             <AuthorForm onAuthorCreated={handleAuthorCreated} />
             <AuthorList authors={authors} />
         </div>

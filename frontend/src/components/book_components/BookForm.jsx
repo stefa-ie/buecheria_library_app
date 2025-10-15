@@ -33,29 +33,28 @@ export default function BookForm({ onBookCreated }) {
     }, []); 
     
     
-    // Construct new book object
-    const newBook = {
-        Title: title,
-        AuthorId: authorId,
-        ISBN: isbn,
-        PublicationDate: publicationDate,
-        Genre: genre,
-    };
-
-
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        // Construct new book object with correct field names
+        const newBook = {
+            Title: title,
+            AuthorID: parseInt(authorId), // Convert to int
+            Isbn: isbn, 
+            PublicationDate: publicationDate,
+            Genre: genre,
+        };
+        
         try {
-            createBook(newBook).then((createdBook) => {
-                onBookCreated(createdBook);
-                // Clear form fields
-                setTitle("");
-                setAuthorId("");
-                setIsbn("");
-                setPublicationDate("");
-                setGenre("");
-            });
+            const createdBook = await createBook(newBook);
+            onBookCreated(createdBook);
+            // Clear form fields
+            setTitle("");
+            setAuthorId("");
+            setIsbn("");
+            setPublicationDate("");
+            setGenre("");
         } catch (error) {
             console.error("Error creating book:", error);
         }
@@ -87,7 +86,7 @@ export default function BookForm({ onBookCreated }) {
                     >
                         <option value="">Select an author</option>
                         {authors.map((author) => (
-                            <option key={author.id} value={author.id}>
+                            <option key={author.AuthorID} value={author.AuthorID}>
                                 {author.FirstName} {author.LastName}
                             </option>
                         ))}
