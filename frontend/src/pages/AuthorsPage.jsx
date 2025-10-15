@@ -7,6 +7,7 @@ export default function AuthorsPage() {
     const [authors, setAuthors] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
+    const [updatingAuthor, setUpdatingAuthor] = React.useState(null);
 
     // Fetch authors on component mount
     React.useEffect(() => {
@@ -32,11 +33,48 @@ export default function AuthorsPage() {
         setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
     };
 
+    // Handle author update
+    const handleAuthorUpdated = (updatedAuthor) => {
+        setAuthors((prevAuthors) =>
+            prevAuthors.map((author) =>
+                author.AuthorID === updatedAuthor.AuthorID ? updatedAuthor : author
+            )
+        );
+        setUpdatingAuthor(null);
+    };
+
+    // Handle author deletion
+    const handleAuthorDeleted = (authorId) => {
+        setAuthors((prevAuthors) =>
+            prevAuthors.filter((author) => author.AuthorID !== authorId)
+        );
+    };
+
+    // Handle update button click
+    const handleAuthorUpdate = (author) => {
+        setUpdatingAuthor(author);
+    };
+
+    // Handle cancel button click when updating
+    const handleCancelUpdate = () => {
+        setUpdatingAuthor(null);
+    };
+
+
     return (
         <div className="bg-gray-400 p-4 m-8">
             <h1 className="text-4xl italic">Authors</h1>
-            <AuthorForm onAuthorCreated={handleAuthorCreated} />
-            <AuthorList authors={authors} />
+            <AuthorForm 
+                onAuthorCreated={handleAuthorCreated}
+                onAuthorUpdated={handleAuthorUpdated}
+                updatingAuthor={updatingAuthor}
+                onCancelUpdate={handleCancelUpdate}
+            />
+            <AuthorList 
+                authors={authors}
+                onAuthorDeleted={handleAuthorDeleted}
+                onAuthorUpdate={handleAuthorUpdate}
+            />
         </div>
     );
 }
