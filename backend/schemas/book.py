@@ -7,11 +7,11 @@ from schemas.author import AuthorResponse
 class BookResponse(BaseModel):
     BookID: int
     Title: str
-    AuthorID: int
+    AuthorID: Optional[int] = None
     Isbn: str
     PublicationDate: date
     Genre: str
-    author: AuthorResponse  # nested author info
+    author: Optional[AuthorResponse] = None  # nested author info
 
     class Config:
         from_attributes = True

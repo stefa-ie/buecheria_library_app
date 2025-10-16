@@ -11,7 +11,7 @@ router = APIRouter()
 # Endpoint to read all books
 @router.get("/books", response_model=List[BookResponse])
 def read_books(db: Session = Depends(get_db)):
-    books = db.query(Book).options(joinedload(Book.author)).all()
+    books = db.query(Book).filter(Book.AuthorID.isnot(None)).options(joinedload(Book.author)).all()
     return books
 
 
