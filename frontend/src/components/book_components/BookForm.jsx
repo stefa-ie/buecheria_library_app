@@ -1,21 +1,24 @@
 import React from "react";
-import { createBook } from "../../api/books";
+import { createBook, updateBook } from "../../api/books";
 import { fetchAuthors } from "../../api/authors";
 
 
 // BookForm component to add a new book
-export default function BookForm({ onBookCreated }) {
-    const [title, setTitle] = React.useState("");
-    const [authorId, setAuthorId] = React.useState("");
-    const [isbn, setIsbn] = React.useState("");
-    const [publicationDate, setPublicationDate] = React.useState("");
-    const [genre, setGenre] = React.useState("");
+export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, onCancelUpdate }) {
+    const [formData, setFormData] = React.useState({
+        Title: "",
+        AuthorID: "",
+        Isbn: "",
+        PublicationDate: "",
+        Genre: "",
+    });
 
 
     // State to hold authors for the dropdown
     const [authors, setAuthors] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
+
 
     // Fetch authors on component mount
     React.useEffect(() => {
@@ -31,97 +34,210 @@ export default function BookForm({ onBookCreated }) {
         }
         loadAuthors();
     }, []); 
+
+
+    // Update form data when updatingBook prop changes
+    React.useEffect(() => {
+        if (updatingBook) {
+            setFormData({
+                Title: updatingBook.Title || "",
+                AuthorID: updatingBook.AuthorID || "",
+                Isbn: updatingBook.Isbn || "",
+                PublicationDate: updatingBook.PublicationDate || "",
+                Genre: updatingBook.Genre || "",
+            });
+        } else {
+            setFormData({
+                Title: "",
+                AuthorID: "",
+                Isbn: "",
+                PublicationDate: "",
+                Genre: "",
+            });
+        }
+    }, [updatingBook]);
+
+
+    // Object destructuring for easier access
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    }
+
     
-    
-    // Handle form submission
+    // Handle form submission for create
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Construct new book object with correct field names
-        const newBook = {
-            Title: title,
-            AuthorID: parseInt(authorId), // Convert to int
-            Isbn: isbn, 
-            PublicationDate: publicationDate,
-            Genre: genre,
-        };
-        
         try {
-            const createdBook = await createBook(newBook);
-            onBookCreated(createdBook);
+            const newBook = await createBook(formData);
+
+            // Notify parent component
+            if (onBookCreated) {
+                onBookCreated(newBook);
+            }
             // Clear form fields
-            setTitle("");
-            setAuthorId("");
-            setIsbn("");
-            setPublicationDate("");
-            setGenre("");
+            setFormData({
+                Title: "",
+                AuthorID: "",
+                Isbn: "",
+                PublicationDate: "",
+                Genre: "",
+            });
+            alert('Book created successfully!');
         } catch (error) {
-            console.error("Error creating book:", error);
+            alert(`Failed to create book: ${error.message}`);
         }
     };
 
 
+    // Handle form submission for update
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        try {
+            const updatedBook = await updateBook(updatingBook.BookID, formData);
+
+            // Notify parent component
+            if (onBookUpdated) {
+                onBookUpdated(updatedBook);
+            }
+            // Clear form fields
+            setFormData({
+                Title: "",
+                AuthorID: "",
+                Isbn: "",
+                PublicationDate: "",
+                Genre: "",
+            });
+            alert('Book updated successfully!');
+        } catch (error) {
+            alert(`Failed to update book: ${error.message}`);
+        }
+    };
+
+
+    // Handle cancel update
+    const handleCancelUpdate = () => {
+        if (onCancelUpdate) {
+            onCancelUpdate();
+        }
+        setFormData({
+            Title: "",
+            AuthorID: "",
+            Isbn: "",
+            PublicationDate: "",
+            Genre: "",
+        });
+    }
+
+
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Title:</label>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label>Author:</label>
-                {loading ? (
-                    <p>Loading authors...</p>
-                ) : error ? (
-                    <p>Error loading authors: {error}</p>
-                ) : (
-                    <select
-                        value={authorId}
-                        onChange={(e) => setAuthorId(e.target.value)}
-                        required
+        <div className="my-4 p-4 bg-white rounded shadow">
+            <h2 className="text-2xl mb-4">
+                {updatingBook ? "Update Book" : "Add New Book"}
+            </h2>
+            <form onSubmit={updatingBook ? handleUpdate : handleSubmit}>
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        Title:
+                        <input
+                            type="text"
+                            name="Title"
+                            value={formData.Title}
+                            onChange={handleChange}
+                            required
+                            className="block w-full p-2 border rounded"
+                        />
+                    </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        Author:
+                        {loading ? (
+                            <p>Loading authors...</p>
+                        ) : error ? (
+                            <p className="text-red-500">{error}</p>
+                        ) : (
+                            <select
+                                name="AuthorID"
+                                value={formData.AuthorID}
+                                onChange={handleChange}
+                                required
+                                className="block w-full p-2 border rounded"
+                            >
+                                <option value="">Select Author</option>
+                                {authors.map((author) => (
+                                    <option key={author.AuthorID} value={author.AuthorID}>
+                                        {author.FirstName} {author.LastName}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
+                    </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        ISBN:
+                        <input
+                            type="text"
+                            name="Isbn"
+                            value={formData.Isbn}
+                            onChange={handleChange}
+                            required
+                            className="block w-full p-2 border rounded"
+                        />
+                    </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        Publication Date:
+                        <input
+                            type="date"
+                            name="PublicationDate"
+                            value={formData.PublicationDate}
+                            onChange={handleChange}
+                            className="block w-full p-2 border rounded"
+                        />
+                    </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        Genre:
+                        <input
+                            type="text"
+                            name="Genre"
+                            value={formData.Genre}
+                            onChange={handleChange}
+                            className="block w-full p-2 border rounded"
+                        />
+                    </label>
+                </div>
+
+                <div className="flex gap-2">
+                    <button
+                        type="submit"
+                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                     >
-                        <option value="">Select an author</option>
-                        {authors.map((author) => (
-                            <option key={author.AuthorID} value={author.AuthorID}>
-                                {author.FirstName} {author.LastName}
-                            </option>
-                        ))}
-                    </select>
-                )}
-            </div>
-            <div>
-                <label>ISBN:</label>
-                <input
-                    type="text"
-                    value={isbn}
-                    onChange={(e) => setIsbn(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label>Publication Date:</label>
-                <input
-                    type="date"
-                    value={publicationDate}
-                    onChange={(e) => setPublicationDate(e.target.value)}
-                    required
-                />
-            </div>
-            <div>
-                <label>Genre:</label>
-                <input
-                    type="text"
-                    value={genre}
-                    onChange={(e) => setGenre(e.target.value)}
-                    required
-                />
-            </div>
-            <button type="submit">Add Book</button>
-        </form>
+                        {updatingBook ? "Update Book" : "Add Book"}
+                    </button>
+
+                    {updatingBook && (
+                        <button
+                            type="button"
+                            onClick={handleCancelUpdate}
+                            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        >
+                            Cancel
+                        </button>
+                    )}
+                </div>
+            </form>
+        </div>
     );
 }
-

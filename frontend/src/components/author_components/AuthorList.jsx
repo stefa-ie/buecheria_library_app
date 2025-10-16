@@ -16,7 +16,7 @@ export default function AuthorList({ authors, onAuthorDeleted, onAuthorUpdate })
 
     return (
         <div>
-            <h2 className="text-2xl bold">Author List</h2>
+            <h2 className="text-2xl font-bold">Author List</h2>
             {authors.length === 0 ? (
                 <p>No authors found.</p>
             ) : (
@@ -30,13 +30,13 @@ export default function AuthorList({ authors, onAuthorDeleted, onAuthorUpdate })
                             </span>
                             <button
                                 onClick={() => onAuthorUpdate(author)}
-                                className="ml-2 px-3 py-0.3 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                className="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                             >
                                 UPDATE
                             </button>
                             <button
                                 onClick={() => handleDelete(author.AuthorID)}
-                                className="ml-2 px-3 py-0.3 bg-blue-500 text-white rounded hover:bg-blue-600"
+                                className="ml-2 px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                             >
                                 DELETE
                             </button>

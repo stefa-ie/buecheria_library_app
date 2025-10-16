@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 from database.database import get_db
 from models.book import Book
@@ -11,14 +11,14 @@ router = APIRouter()
 # Endpoint to read all books
 @router.get("/books", response_model=List[BookResponse])
 def read_books(db: Session = Depends(get_db)):
-    books = db.query(Book).all()
+    books = db.query(Book).options(joinedload(Book.author)).all()
     return books
 
 
 # Endpoint to read specific book by ID
 @router.get("/books/{book_id}", response_model=BookResponse)
 def read_book(book_id: int, db: Session = Depends(get_db)):
-    book = db.query(Book).filter(Book.BookID == book_id).first()
+    book = db.query(Book).options(joinedload(Book.author)).filter(Book.BookID == book_id).first()
     if book is None:
         raise HTTPException(status_code=404, detail="Book not found")
     return book
@@ -41,14 +41,14 @@ def create_book(book: BookCreate, db: Session = Depends(get_db)):
 
     db.add(db_book)
     db.commit()
-    db.refresh(db_book)
+    db.refresh(db_book, ["author"])
     return db_book
 
 
 # Endpoint to update an existing book
 @router.put("/books/{book_id}", response_model=BookResponse)
 def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
-    db_book = db.query(Book).filter(Book.BookID == book_id).first()
+    db_book = db.query(Book).options(joinedload(Book.author)).filter(Book.BookID == book_id).first()
     if db_book is None:
         raise HTTPException(status_code=404, detail="Book not found")
 
@@ -59,14 +59,14 @@ def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book.Genre = book.Genre if book.Genre is not None else db_book.Genre
 
     db.commit()
-    db.refresh(db_book)
+    db.refresh(db_book, ["author"])
     return db_book
 
 
 # Endpoint to delete a book
 @router.delete("/books/{book_id}", response_model=BookResponse)
 def delete_book(book_id: int, db: Session = Depends(get_db)):
-    db_book = db.query(Book).filter(Book.BookID == book_id).first()
+    db_book = db.query(Book).options(joinedload(Book.author)).filter(Book.BookID == book_id).first()
     if db_book is None:
         raise HTTPException(status_code=404, detail="Book not found")
 
