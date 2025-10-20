@@ -28,7 +28,14 @@ export default function BookList({ books, onBookDeleted, onBookUpdate }) {
                             Author Name: {book.author.LastName}, {book.author.FirstName} |
                             ISBN: {book.Isbn} |
                             Publication Date: {book.PublicationDate} |
-                            Genre: {book.Genre}
+                            Genre: {book.Genre} |
+                            Available:{" "}
+                            <input
+                                type="checkbox"
+                                checked={book.Available}
+                                readOnly
+                                className="w-4 h-4 accent-green-600 cursor-default"
+                            />
                             </span>
                             <button
                                 onClick={() => onBookUpdate(book)}

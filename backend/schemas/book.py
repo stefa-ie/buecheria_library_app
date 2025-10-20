@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-from schemas.author import AuthorResponse
+from schemas.author import AuthorResponse, AuthorCreate
 
 # Pydantic model for response
 class BookResponse(BaseModel):
@@ -11,7 +11,8 @@ class BookResponse(BaseModel):
     Isbn: str
     PublicationDate: date
     Genre: str
-    author: Optional[AuthorResponse] = None  # nested author info
+    Available: bool
+    author: Optional[AuthorResponse] = None  # optional nested author
 
     class Config:
         from_attributes = True
@@ -24,6 +25,18 @@ class BookCreate(BaseModel):
     Isbn: str
     PublicationDate: date
     Genre: str
+    Available: bool = True
+
+
+# Pydantic model for creating a new book with optional new author
+class BookCreateWithAuthor(BaseModel):
+    Title: str
+    AuthorID: Optional[int] = None
+    Isbn: str
+    PublicationDate: date
+    Genre: str
+    Available: bool = True
+    NewAuthor: Optional[AuthorCreate] = None
 
 
 # Pydantic model for updating existing book
@@ -33,4 +46,5 @@ class BookUpdate(BaseModel):
     Isbn: Optional[str] = None
     PublicationDate: Optional[date] = None
     Genre: Optional[str] = None
+    Available: Optional[bool] = None
 

@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session, joinedload
 from typing import List
 from database.database import get_db
 from models.book import Book
-from schemas.book import BookResponse, BookCreate, BookUpdate
+from schemas.book import BookResponse, BookCreateWithAuthor, BookUpdate
 from models.author import Author
 
 router = APIRouter()
@@ -26,23 +26,30 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
 
 # Endpoint to create a new book
 @router.post("/books", response_model=BookResponse)
-def create_book(book: BookCreate, db: Session = Depends(get_db)):
-    author = db.query(Author).filter(Author.AuthorID == book.AuthorID).first()
-    if not author:
-        raise HTTPException(status_code=400, detail="Author not found")
+def create_book(book: BookCreateWithAuthor, db: Session = Depends(get_db)):
+    # If a new author is included, create it first
+    if book.NewAuthor is not None:
+        new_author = Author(**book.NewAuthor.dict())
+        db.add(new_author)
+        db.commit()
+        db.refresh(new_author)
+        book.AuthorID = new_author.AuthorID  # associate new author
 
+    # Create the book
     db_book = Book(
         Title=book.Title,
         AuthorID=book.AuthorID,
         Isbn=book.Isbn,
         PublicationDate=book.PublicationDate,
-        Genre=book.Genre
+        Genre=book.Genre,
+        Available=book.Available
     )
-
     db.add(db_book)
     db.commit()
-    db.refresh(db_book, ["author"])
+    db.refresh(db_book)
     return db_book
+
+
 
 
 # Endpoint to update an existing book
@@ -57,9 +64,10 @@ def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book.Isbn = book.Isbn if book.Isbn is not None else db_book.Isbn
     db_book.PublicationDate = book.PublicationDate if book.PublicationDate is not None else db_book.PublicationDate
     db_book.Genre = book.Genre if book.Genre is not None else db_book.Genre
+    db_book.Available = book.Available if book.Available is not None else db_book.Available
 
     db.commit()
-    db.refresh(db_book, ["author"])
+    db.refresh(db_book)
     return db_book
 
 
