@@ -117,6 +117,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                         />
                     </label>
                 </div>
+
                 <div className="mb-3">
                     <label className="block mb-1">
                         Last Name:
@@ -130,6 +131,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                         />
                     </label>
                 </div>
+
                 <div className="mb-3">
                     <label className="block mb-1">
                         Birth Date:
@@ -142,6 +144,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                         />
                     </label>
                 </div>
+
                 <div className="flex gap-2">
                     <button 
                         type="submit"
@@ -150,6 +153,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                         {updatingAuthor ? 'Update Author' : 'Add Author'}
                     </button>
                 </div>
+                
                 <div>
                     {updatingAuthor && (
                         <button 

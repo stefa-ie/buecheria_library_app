@@ -1,6 +1,6 @@
-from datetime import datetime
-from pydantic import BaseModel
-from typing import Optional
+from datetime import date
+from pydantic import BaseModel, EmailStr
+from typing import Optional, Literal
 
 # Pydantic model for response
 class MemberResponse(BaseModel):
@@ -10,9 +10,9 @@ class MemberResponse(BaseModel):
     Address: str
     Email: str
     Phone: str
-    BirthDate: datetime
-    JoinDate: datetime
-    MembershipStatus: str
+    BirthDate: date
+    JoinDate: date
+    MembershipStatus: str # "Member" or "Admin"
 
     class Config:
         from_attributes = True
@@ -23,11 +23,11 @@ class MemberCreate(BaseModel):
     LastName: str
     FirstName: str
     Address: str
-    Email: str
+    Email: EmailStr
     Phone: str
-    BirthDate: datetime
-    JoinDate: datetime
-    MembershipStatus: str
+    BirthDate: date
+    JoinDate: date
+    MembershipStatus: Literal["Member", "Admin"]
 
 
 # Pydantic model for updating existing member
@@ -35,9 +35,9 @@ class MemberUpdate(BaseModel):
     LastName: Optional[str] = None
     FirstName: Optional[str] = None
     Address: Optional[str] = None
-    Email: Optional[str] = None
+    Email: Optional[EmailStr] = None
     Phone: Optional[str] = None
-    BirthDate: Optional[datetime] = None
-    JoinDate: Optional[datetime] = None
-    MembershipStatus: Optional[str] = None
+    BirthDate: Optional[date] = None
+    JoinDate: Optional[date] = None
+    MembershipStatus: Optional[Literal["Member", "Admin"]] = None
 
