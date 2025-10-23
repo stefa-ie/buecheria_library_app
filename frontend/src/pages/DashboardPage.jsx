@@ -87,6 +87,13 @@ export default function DashboardPage() {
                   Authors
                 </button>
               </Link>
+
+              <Link to="/members">
+                <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-purple-400 hover:text-white rounded-lg font-medium">
+                  <Users className="w-5 h-5" />
+                  Members
+                </button>
+              </Link>
             </nav>
           </div>
         </aside>
