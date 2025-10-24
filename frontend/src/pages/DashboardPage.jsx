@@ -1,7 +1,5 @@
 import { BookOpen, Users, BarChart3, Search, LogOut } from "lucide-react"
 import { Link } from "react-router-dom";
-import AuthorsPage from "./AuthorsPage"
-import BooksPage from "./BooksPage"
 
 // Basic Button component
 function Button({ children, className = "", variant = "default", ...props }) {
@@ -92,6 +90,13 @@ export default function DashboardPage() {
                 <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-purple-400 hover:text-white rounded-lg font-medium">
                   <Users className="w-5 h-5" />
                   Members
+                </button>
+              </Link>
+
+              <Link to="/loans">
+                <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-purple-400 hover:text-white rounded-lg font-medium">
+                  <Users className="w-5 h-5" />
+                  Loans
                 </button>
               </Link>
             </nav>

@@ -35,6 +35,7 @@ export default function BooksPage() {
         setBooks((prevBooks) => [...prevBooks, newBook]);
     };
 
+
     // Handle book update
     const handleBookUpdated = (updatedBook) => {
         setBooks((prevBooks) =>
@@ -45,6 +46,7 @@ export default function BooksPage() {
         setUpdatingBook(null);
     }
 
+
     // Handle book deletion
     const handleBookDeleted = (bookId) => {
         setBooks((prevBooks) =>
@@ -52,10 +54,12 @@ export default function BooksPage() {
         );
     };
 
+
     // Handle update button click
     const handleBookUpdate = (book) => {
         setUpdatingBook(book);
     };
+
 
     // Handle cancel button click when updating
     const handleCancelUpdate = () => {
@@ -80,3 +84,4 @@ export default function BooksPage() {
         </div>
     );
 }
+

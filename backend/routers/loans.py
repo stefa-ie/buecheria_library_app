@@ -26,7 +26,13 @@ def read_loan(loan_id: int, db: Session = Depends(get_db)):
 # Endpoint to create new loan
 @router.post("/loans", response_model=LoanResponse)
 def create_loan(loan: LoanCreate, db: Session = Depends(get_db)):
-    db_loan = Loan(MemberID=loan.MemberID, BookID=loan.BookID, IssueDate=loan.LoanDate, DueDate=loan.DueDate, ReturnDate=loan.ReturnDate)
+    db_loan = Loan(
+        MemberID=loan.MemberID, 
+        BookID=loan.BookID, 
+        IssueDate=loan.LoanDate, 
+        DueDate=loan.DueDate, 
+        ReturnDate=loan.ReturnDate
+    )
     db.add(db_loan)
     db.commit()
     db.refresh(db_loan)
@@ -45,6 +51,7 @@ def update_loan(loan_id: int, loan: LoanUpdate, db: Session = Depends(get_db)):
     db_loan.IssueDate = loan.LoanDate if loan.LoanDate is not None else db_loan.IssueDate
     db_loan.DueDate = loan.DueDate if loan.DueDate is not None else db_loan.DueDate
     db_loan.ReturnDate = loan.ReturnDate if loan.ReturnDate is not None else db_loan.ReturnDate
+    
     db.commit()
     db.refresh(db_loan)
     return db_loan

@@ -29,7 +29,7 @@ def read_book(book_id: int, db: Session = Depends(get_db)):
 def create_book(book: BookCreateWithAuthor, db: Session = Depends(get_db)):
     # If a new author is included, create it first
     if book.NewAuthor is not None:
-        new_author = Author(**book.NewAuthor.dict())
+        new_author = Author(**book.NewAuthor.model_dump())    # formerly ".dict()" in Pydantic v2
         db.add(new_author)
         db.commit()
         db.refresh(new_author)
@@ -48,8 +48,6 @@ def create_book(book: BookCreateWithAuthor, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(db_book)
     return db_book
-
-
 
 
 # Endpoint to update an existing book
