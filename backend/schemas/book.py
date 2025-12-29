@@ -6,12 +6,12 @@ from schemas.author import AuthorResponse, AuthorCreate
 # Pydantic model for response
 class BookResponse(BaseModel):
     BookID: int
-    Title: str
+    Title: Optional[str] = None
     AuthorID: Optional[int] = None
-    Isbn: str
-    PublicationDate: date
-    Genre: str
-    Available: bool
+    Isbn: Optional[str] = None
+    PublicationDate: Optional[date] = None
+    Genre: Optional[str] = None
+    Available: Optional[bool] = None
     author: Optional[AuthorResponse] = None  # optional nested author
 
     class Config:

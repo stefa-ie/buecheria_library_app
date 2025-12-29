@@ -1,0 +1,8 @@
+backend/
+requirements.txt
+render.yaml
+*.db
+*.sqbpro
+__pycache__/
+*.pyc
+
