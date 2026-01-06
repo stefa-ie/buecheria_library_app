@@ -5,12 +5,14 @@ import MembersPage from "./pages/MembersPage"
 import LoansPage from "./pages/LoansPage"
 import DashboardPage from "./pages/DashboardPage"
 import HomePage from "./pages/HomePage"
+import LoginPage from "./pages/LoginPage"
 
 function App() {
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />}/> 
+                <Route path="/login" element={<LoginPage />}/> 
                 <Route path="/dashboard" element={<DashboardPage />}/> 
                 <Route path="/authors" element={<AuthorsPage />} />
                 <Route path="/books" element={<BooksPage />} /> 
