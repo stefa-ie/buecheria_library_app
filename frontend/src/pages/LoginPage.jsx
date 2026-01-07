@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login, setToken } from "../api/auth";
 
 export default function LoginPage() {
+    const navigate = useNavigate();
     const [formData, setFormData] = React.useState({
-        email: "",
+        username: "",
         password: "",
     });
+    const [error, setError] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -13,13 +17,29 @@ export default function LoginPage() {
             ...prevData,
             [name]: value,
         }));
+        // Clear error when user types
+        if (error) setError("");
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement login logic
-        console.log("Login attempt:", formData);
-        alert("Login functionality will be implemented soon");
+        setLoading(true);
+        setError("");
+        
+        try {
+            // Call backend login API
+            const response = await login(formData.username, formData.password);
+            
+            // Store JWT token and user info
+            setToken(response.access_token, response.username, response.role);
+            
+            // Redirect to dashboard
+            navigate("/dashboard");
+        } catch (err) {
+            setError(err.message || "Ungültiger Benutzername oder Passwort");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -65,18 +85,23 @@ export default function LoginPage() {
                     <p className="text-gray-600 mb-6">Melden Sie sich bei Ihrem Konto an</p>
 
                     <form onSubmit={handleSubmit}>
+                        {error && (
+                            <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+                                {error}
+                            </div>
+                        )}
                         <div className="mb-4">
                             <label className="block mb-2 text-gray-700 font-medium">
-                                E-Mail
+                                Benutzername
                             </label>
                             <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
+                                type="text"
+                                name="username"
+                                value={formData.username}
                                 onChange={handleChange}
                                 required
                                 className="block w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                                placeholder="ihre.email@beispiel.de"
+                                placeholder="Benutzername"
                             />
                         </div>
 
@@ -107,9 +132,10 @@ export default function LoginPage() {
 
                         <button
                             type="submit"
-                            className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-lg"
+                            disabled={loading}
+                            className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            Anmelden
+                            {loading ? "Anmeldung..." : "Anmelden"}
                         </button>
                     </form>
 

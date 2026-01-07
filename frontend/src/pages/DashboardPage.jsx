@@ -1,5 +1,7 @@
 import { BookOpen, Users, BarChart3, Search, LogOut } from "lucide-react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { isAuthenticated, removeToken } from "../api/auth";
 
 // Basic Button component
 function Button({ children, className = "", variant = "default", ...props }) {
@@ -31,6 +33,20 @@ function Card({ children, className = "" }) {
 }
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
+
+  // Check if user is authenticated
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/login");
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    removeToken();
+    navigate("/login");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -51,7 +67,7 @@ export default function DashboardPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <Input type="search" placeholder="Search books, authors, members, ..." className="pl-10 w-80 bg-gray-50" />
             </div>
-            <Button variant="outline" className="gap-2 bg-transparent">
+            <Button variant="outline" className="gap-2 bg-transparent" onClick={handleLogout}>
               <LogOut className="w-4 h-4" />
               LOGOUT
             </Button>
