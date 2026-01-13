@@ -54,10 +54,10 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="h-screen flex flex-col bg-gray-50 overflow-hidden">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
+      <header className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-4 h-[89px]">
+        <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-3">
             <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center">
               <BookOpen className="w-7 h-7 text-white" />
@@ -81,9 +81,9 @@ export default function Layout() {
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-80 bg-white border-r border-gray-200 min-h-[calc(100vh-89px)] p-6">
+        <aside className="w-80 flex-shrink-0 bg-white border-r border-gray-200 p-6 overflow-y-auto">
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-gray-900 mb-1">Dashboard</h2>
             <p className="text-sm text-gray-600 mb-6">Verwaltungsbereich</p>
@@ -148,7 +148,7 @@ export default function Layout() {
         </aside>
 
         {/* Main Content - Outlet renders child routes here */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 overflow-y-auto p-8">
           <Outlet />
         </main>
       </div>
