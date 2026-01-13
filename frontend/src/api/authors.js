@@ -44,7 +44,15 @@ export async function createAuthor(author) {
         body: JSON.stringify(author),
     });
     if (!response.ok) {
-        throw new Error('Failed to create author');
+        let errorMessage = 'Failed to create author';
+        try {
+            const errorData = await response.json();
+            errorMessage = errorData.detail || errorMessage;
+        } catch (e) {
+            const errorText = await response.text();
+            errorMessage = errorText || errorMessage;
+        }
+        throw new Error(errorMessage);
     }
     return response.json();
 }

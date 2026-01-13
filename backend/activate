@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Simple activation script - source this to activate the venv
+# Usage: source activate  (or . activate)
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+# Ensure venv exists and is set up correctly
+if [ ! -d "venv" ]; then
+    echo "📦 Virtual environment not found. Creating it..."
+    
+    # Find Python 3.12 or 3.13
+    if command -v python3.12 &> /dev/null; then
+        PYTHON_CMD="python3.12"
+    elif command -v python3.13 &> /dev/null; then
+        PYTHON_CMD="python3.13"
+    else
+        PYTHON_CMD="python3"
+    fi
+    
+    $PYTHON_CMD -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install -r ../requirements.txt
+    echo "✅ Setup complete!"
+else
+    # Check if venv uses Python 3.14
+    if [ -f "venv/bin/python" ]; then
+        VENV_PYTHON_VERSION=$(venv/bin/python --version 2>&1 | grep -oE '[0-9]+\.[0-9]+' | head -1)
+        if [[ "$VENV_PYTHON_VERSION" == "3.14"* ]] || [[ "$VENV_PYTHON_VERSION" == "3.15"* ]] || [[ "$VENV_PYTHON_VERSION" == "3.16"* ]]; then
+            echo "⚠️  Recreating venv (Python $VENV_PYTHON_VERSION not supported)..."
+            rm -rf venv
+            
+            if command -v python3.12 &> /dev/null; then
+                PYTHON_CMD="python3.12"
+            elif command -v python3.13 &> /dev/null; then
+                PYTHON_CMD="python3.13"
+            else
+                PYTHON_CMD="python3"
+            fi
+            
+            $PYTHON_CMD -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r ../requirements.txt
+        else
+            source venv/bin/activate
+        fi
+    else
+        source venv/bin/activate
+    fi
+    
+    # Check if dependencies are installed
+    if ! python -c "import uvicorn" 2>/dev/null; then
+        echo "📦 Installing dependencies..."
+        pip install -r ../requirements.txt
+    fi
+fi
+
+echo "✅ Virtual environment activated!"
+echo "You can now run: uvicorn app:app --reload"

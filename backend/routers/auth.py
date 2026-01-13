@@ -18,31 +18,44 @@ USERS_DB = {
 @router.post("/login", response_model=TokenResponse)
 def login(login_data: LoginRequest):
     """Login endpoint that returns JWT token"""
-    username = login_data.username
-    password = login_data.password
-    
-    # Check if user exists and password is correct
-    user = USERS_DB.get(username)
-    if not user or user["password"] != password:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
+    try:
+        username = login_data.username
+        password = login_data.password
+        
+        # Check if user exists and password is correct
+        user = USERS_DB.get(username)
+        if not user or user["password"] != password:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Incorrect username or password",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        
+        # Create access token
+        access_token_expires = timedelta(minutes=30)
+        access_token = create_access_token(
+            data={"sub": username, "role": user["role"]},
+            expires_delta=access_token_expires
         )
-    
-    # Create access token
-    access_token_expires = timedelta(minutes=30)
-    access_token = create_access_token(
-        data={"sub": username, "role": user["role"]},
-        expires_delta=access_token_expires
-    )
-    
-    return TokenResponse(
-        access_token=access_token,
-        token_type="bearer",
-        username=username,
-        role=user["role"]
-    )
+        
+        return TokenResponse(
+            access_token=access_token,
+            token_type="bearer",
+            username=username,
+            role=user["role"]
+        )
+    except HTTPException:
+        # Re-raise HTTP exceptions (like 401)
+        raise
+    except Exception as e:
+        # Log unexpected errors and return 500
+        import traceback
+        print(f"Login error: {str(e)}")
+        print(traceback.format_exc())
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Internal server error: {str(e)}"
+        )
 
 @router.get("/protected")
 def protected_route(current_user: dict = Depends(get_current_user)):

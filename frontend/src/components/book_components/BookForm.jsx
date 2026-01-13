@@ -1,6 +1,6 @@
 import React from "react";
 import { createBook, updateBook } from "../../api/books";
-import { fetchAuthors } from "../../api/authors";
+import { fetchAuthors, createAuthor } from "../../api/authors";
 
 
 // BookForm component to add a new book
@@ -15,6 +15,12 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
     });
 
     const [authors, setAuthors] = React.useState([]);
+    const [showNewAuthorForm, setShowNewAuthorForm] = React.useState(false);
+    const [newAuthorData, setNewAuthorData] = React.useState({
+        FirstName: "",
+        LastName: "",
+        BirthDate: "",
+    });
 
 
     // Fetch authors on mount
@@ -132,6 +138,61 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
         });
     };
 
+    // Handle creating a new author
+    const handleCreateAuthor = async (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Prevent event from bubbling to parent form
+        
+        try {
+            // Prepare author data - only include BirthDate if it's not empty
+            const authorPayload = {
+                FirstName: newAuthorData.FirstName,
+                LastName: newAuthorData.LastName,
+            };
+            
+            // Only add BirthDate if it's provided
+            if (newAuthorData.BirthDate && newAuthorData.BirthDate.trim() !== '') {
+                authorPayload.BirthDate = newAuthorData.BirthDate;
+            }
+            
+            console.log('Creating author with data:', authorPayload);
+            const newAuthor = await createAuthor(authorPayload);
+            console.log('Author created:', newAuthor);
+            
+            // Add the new author to the authors list
+            setAuthors((prevAuthors) => [...prevAuthors, newAuthor]);
+            
+            // Automatically select the new author
+            setFormData((prevData) => ({
+                ...prevData,
+                AuthorID: newAuthor.AuthorID.toString(),
+            }));
+            
+            // Reset new author form and hide it
+            setNewAuthorData({
+                FirstName: "",
+                LastName: "",
+                BirthDate: "",
+            });
+            setShowNewAuthorForm(false);
+            
+            alert('Author created and selected successfully!');
+        } catch (error) {
+            console.error('Error creating author:', error);
+            const errorMessage = error.message || 'Failed to create author';
+            alert(`Failed to create author: ${errorMessage}`);
+        }
+    };
+
+    // Handle new author form changes
+    const handleNewAuthorChange = (e) => {
+        const { name, value } = e.target;
+        setNewAuthorData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
     
     return (
         <div className="my-4 p-4 bg-white rounded shadow">
@@ -156,21 +217,95 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 <div className="mb-3">
                     <label className="block mb-1">
                         Author:
-                        <select
-                            name="AuthorID"
-                            value={formData.AuthorID}
-                            onChange={handleChange}
-                            required
-                            className="block w-full p-2 border rounded"
-                        >
-                            <option value="">Select Author</option>
-                            {authors.map((author) => (
-                                <option key={author.AuthorID} value={author.AuthorID}>
-                                    {author.FirstName} {author.LastName}
-                                </option>
-                            ))}
-                        </select>
+                        <div className="flex gap-2">
+                            <select
+                                name="AuthorID"
+                                value={formData.AuthorID}
+                                onChange={handleChange}
+                                required
+                                className="block flex-1 p-2 border rounded"
+                                disabled={showNewAuthorForm}
+                            >
+                                <option value="">Select Author</option>
+                                {authors.map((author) => (
+                                    <option key={author.AuthorID} value={author.AuthorID}>
+                                        {author.FirstName} {author.LastName}
+                                    </option>
+                                ))}
+                            </select>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setShowNewAuthorForm(!showNewAuthorForm);
+                                    if (showNewAuthorForm) {
+                                        setNewAuthorData({
+                                            FirstName: "",
+                                            LastName: "",
+                                            BirthDate: "",
+                                        });
+                                    }
+                                }}
+                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 whitespace-nowrap"
+                            >
+                                {showNewAuthorForm ? 'Cancel' : '+ New Author'}
+                            </button>
+                        </div>
                     </label>
+                    
+                    {showNewAuthorForm && (
+                        <div className="mt-3 p-4 bg-gray-50 border border-gray-300 rounded">
+                            <h3 className="text-lg font-semibold mb-3">Add New Author</h3>
+                            <div>
+                                <div className="mb-3">
+                                    <label className="block mb-1 text-sm">
+                                        First Name:
+                                        <input
+                                            type="text"
+                                            name="FirstName"
+                                            value={newAuthorData.FirstName}
+                                            onChange={handleNewAuthorChange}
+                                            required
+                                            className="block w-full p-2 border rounded mt-1"
+                                            placeholder="First Name"
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="block mb-1 text-sm">
+                                        Last Name:
+                                        <input
+                                            type="text"
+                                            name="LastName"
+                                            value={newAuthorData.LastName}
+                                            onChange={handleNewAuthorChange}
+                                            required
+                                            className="block w-full p-2 border rounded mt-1"
+                                            placeholder="Last Name"
+                                        />
+                                    </label>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="block mb-1 text-sm">
+                                        Birth Date:
+                                        <input
+                                            type="date"
+                                            name="BirthDate"
+                                            value={newAuthorData.BirthDate}
+                                            onChange={handleNewAuthorChange}
+                                            className="block w-full p-2 border rounded mt-1"
+                                        />
+                                    </label>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={handleCreateAuthor}
+                                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                >
+                                    Add Author
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mb-3">

@@ -17,7 +17,7 @@ class AuthorResponse(BaseModel):
 class AuthorCreate(BaseModel):
     LastName: str
     FirstName: str
-    BirthDate: date
+    BirthDate: Optional[date] = None
         
         
 # Pydantic model for updating existing author

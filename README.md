@@ -4,43 +4,47 @@
 
 The backend requires a virtual environment because macOS uses an externally-managed Python environment.
 
-### First-time Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-
-2. Run the setup script:
-   ```bash
-   chmod +x setup.sh
-   ./setup.sh
-   ```
-
-   Or manually:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install --upgrade pip
-   pip install -r ../requirements.txt
-   ```
-
 ### Running the Backend
 
-**Always activate the virtual environment first:**
+**Option 1: Use uvicorn directly (Recommended)**
+
+Activate the environment once, then use `uvicorn` directly:
 
 ```bash
 cd backend
-source venv/bin/activate
+source activate    # or: . activate
 uvicorn app:app --reload
 ```
 
-### Why This Error Keeps Happening
+The `activate` script automatically:
+- ✅ Creates venv if it doesn't exist
+- ✅ Detects and fixes Python 3.14 issues
+- ✅ Installs dependencies if missing
+- ✅ Activates the virtual environment
 
-The `email-validator` error appears because:
-- The code uses `EmailStr` from Pydantic (in `schemas/member.py`)
-- This requires the `email-validator` package
-- You're running Python without the virtual environment activated
-- macOS prevents installing packages globally in system Python
+After sourcing `activate`, you can use `uvicorn` directly!
 
-**Solution:** Always activate the virtual environment before running the backend!
+**Option 2: Use the start script**
+
+```bash
+cd backend
+./start.sh
+```
+
+This automatically handles setup and starts the server.
+
+### Alternative: Manual Setup (if needed)
+
+If you prefer to set up manually:
+
+```bash
+cd backend
+python3.12 -m venv venv  # or python3.13
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r ../requirements.txt
+python -m uvicorn app:app --reload
+```
+
+**Note:** After sourcing `activate`, you can use `uvicorn` directly (no need for `python -m uvicorn`) because the venv is activated and `uvicorn` will use the correct Python.
+

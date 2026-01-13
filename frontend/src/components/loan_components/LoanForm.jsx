@@ -1,5 +1,7 @@
 import React from "react";
 import { createLoan, updateLoan } from "../../api/loans";
+import { fetchBooks } from "../../api/books";
+import { fetchMembers } from "../../api/members";
 
 /**
  * LoanForm component for creating and updating loans
@@ -14,6 +16,37 @@ export default function LoanForm({ onLoanCreated, onLoanUpdated, updatingLoan, o
         ReturnDate: "",
     });
 
+    // Books and Members data
+    const [books, setBooks] = React.useState([]);
+    const [members, setMembers] = React.useState([]);
+
+    // Search/filter states
+    const [bookSearch, setBookSearch] = React.useState("");
+    const [memberSearch, setMemberSearch] = React.useState("");
+    const [showBookDropdown, setShowBookDropdown] = React.useState(false);
+    const [showMemberDropdown, setShowMemberDropdown] = React.useState(false);
+
+    // Selected items for display
+    const [selectedBook, setSelectedBook] = React.useState(null);
+    const [selectedMember, setSelectedMember] = React.useState(null);
+
+    // Fetch books and members on mount
+    React.useEffect(() => {
+        const loadData = async () => {
+            try {
+                const [booksData, membersData] = await Promise.all([
+                    fetchBooks(),
+                    fetchMembers()
+                ]);
+                setBooks(booksData);
+                setMembers(membersData);
+            } catch (error) {
+                alert(`Failed to load data: ${error.message}`);
+            }
+        };
+        loadData();
+    }, []);
+
     // Update form data when updatingLoan changes
     React.useEffect(() => {
         if (updatingLoan) {
@@ -24,6 +57,18 @@ export default function LoanForm({ onLoanCreated, onLoanUpdated, updatingLoan, o
                 DueDate: updatingLoan.DueDate,
                 ReturnDate: updatingLoan.ReturnDate || "",
             });
+            
+            // Set selected items for display
+            const book = books.find(b => b.BookID === updatingLoan.BookID);
+            const member = members.find(m => m.MemberID === updatingLoan.MemberID);
+            if (book) {
+                setSelectedBook(book);
+                setBookSearch(`${book.Title} (ID: ${book.BookID})`);
+            }
+            if (member) {
+                setSelectedMember(member);
+                setMemberSearch(`${member.FirstName} ${member.LastName} (ID: ${member.MemberID})`);
+            }
         } else {
             setFormData({
                 BookID: "",
@@ -32,25 +77,95 @@ export default function LoanForm({ onLoanCreated, onLoanUpdated, updatingLoan, o
                 DueDate: "",
                 ReturnDate: "",
             });
+            setBookSearch("");
+            setMemberSearch("");
+            setSelectedBook(null);
+            setSelectedMember(null);
         }
-    }, [updatingLoan]);
+    }, [updatingLoan, books, members]);
 
 
-// Object destructuring for easier access
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-    }));
-}
+    // Filter books based on search
+    const filteredBooks = React.useMemo(() => {
+        if (!bookSearch.trim()) return books;
+        const searchLower = bookSearch.toLowerCase();
+        return books.filter(book => 
+            book.Title.toLowerCase().includes(searchLower) ||
+            book.BookID.toString().includes(bookSearch) ||
+            (book.Isbn && book.Isbn.toLowerCase().includes(searchLower))
+        );
+    }, [books, bookSearch]);
+
+    // Filter members based on search
+    const filteredMembers = React.useMemo(() => {
+        if (!memberSearch.trim()) return members;
+        const searchLower = memberSearch.toLowerCase();
+        return members.filter(member => 
+            member.FirstName.toLowerCase().includes(searchLower) ||
+            member.LastName.toLowerCase().includes(searchLower) ||
+            member.MemberID.toString().includes(memberSearch) ||
+            `${member.FirstName} ${member.LastName}`.toLowerCase().includes(searchLower)
+        );
+    }, [members, memberSearch]);
+
+    // Handle book selection
+    const handleBookSelect = (book) => {
+        setFormData(prev => ({ ...prev, BookID: book.BookID }));
+        setSelectedBook(book);
+        setBookSearch(`${book.Title} (ID: ${book.BookID})`);
+        setShowBookDropdown(false);
+    };
+
+    // Handle member selection
+    const handleMemberSelect = (member) => {
+        setFormData(prev => ({ ...prev, MemberID: member.MemberID }));
+        setSelectedMember(member);
+        setMemberSearch(`${member.FirstName} ${member.LastName} (ID: ${member.MemberID})`);
+        setShowMemberDropdown(false);
+    };
+
+    // Handle book search input
+    const handleBookSearchChange = (e) => {
+        const value = e.target.value;
+        setBookSearch(value);
+        setShowBookDropdown(true);
+        if (!value) {
+            setFormData(prev => ({ ...prev, BookID: "" }));
+            setSelectedBook(null);
+        }
+    };
+
+    // Handle member search input
+    const handleMemberSearchChange = (e) => {
+        const value = e.target.value;
+        setMemberSearch(value);
+        setShowMemberDropdown(true);
+        if (!value) {
+            setFormData(prev => ({ ...prev, MemberID: "" }));
+            setSelectedMember(null);
+        }
+    };
+
+    // Object destructuring for easier access
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    }
 
 
 // Handle form submission for create
 const handleCreate = async (e) => {
     e.preventDefault();
     try {
-        const newLoan = await createLoan(formData);
+        // Prepare loan data - convert empty ReturnDate to null
+        const loanData = {
+            ...formData,
+            ReturnDate: formData.ReturnDate || null,
+        };
+        const newLoan = await createLoan(loanData);
 
         // Notify parent component
         if (onLoanCreated) {
@@ -75,7 +190,12 @@ const handleCreate = async (e) => {
 const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-        const updatedLoan = await updateLoan(updatingLoan.LoanID, formData);
+        // Prepare loan data - convert empty ReturnDate to null
+        const loanData = {
+            ...formData,
+            ReturnDate: formData.ReturnDate || null,
+        };
+        const updatedLoan = await updateLoan(updatingLoan.LoanID, loanData);
 
         // Notify parent component
         if (onLoanUpdated) {
@@ -119,29 +239,86 @@ return (
         <form onSubmit={updatingLoan ? handleUpdate : handleCreate}>
             <div className="mb-3">
                 <label className="block mb-1">
-                    Book ID:
-                    <input
-                        type="number"
-                        name="BookID"
-                        value={formData.BookID}
-                        onChange={handleChange}
-                        required
-                        className="block w-full p-2 border rounded"
-                    />
+                    Book:
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={bookSearch}
+                            onChange={handleBookSearchChange}
+                            onFocus={() => setShowBookDropdown(true)}
+                            onBlur={() => setTimeout(() => setShowBookDropdown(false), 200)}
+                            placeholder="Type book title, ISBN, or ID..."
+                            required
+                            className="block w-full p-2 border rounded"
+                        />
+                        {showBookDropdown && filteredBooks.length > 0 && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+                                {filteredBooks.map((book) => (
+                                    <div
+                                        key={book.BookID}
+                                        onClick={() => handleBookSelect(book)}
+                                        className="p-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
+                                    >
+                                        <div className="font-semibold">{book.Title || 'Untitled'}</div>
+                                        <div className="text-sm text-gray-600">
+                                            ID: {book.BookID} | ISBN: {book.Isbn || 'N/A'}
+                                            {book.author && ` | Author: ${book.author.FirstName || ''} ${book.author.LastName || ''}`.trim()}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        {showBookDropdown && filteredBooks.length === 0 && bookSearch && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg p-2">
+                                <div className="text-gray-500">No books found</div>
+                            </div>
+                        )}
+                    </div>
+                    {formData.BookID && (
+                        <input type="hidden" name="BookID" value={formData.BookID} />
+                    )}
                 </label>
             </div>
 
             <div className="mb-3">
                 <label className="block mb-1">
-                    Member ID:
-                    <input
-                        type="number"
-                        name="MemberID"
-                        value={formData.MemberID}
-                        onChange={handleChange}
-                        required
-                        className="block w-full p-2 border rounded"
-                    />
+                    Member:
+                    <div className="relative">
+                        <input
+                            type="text"
+                            value={memberSearch}
+                            onChange={handleMemberSearchChange}
+                            onFocus={() => setShowMemberDropdown(true)}
+                            onBlur={() => setTimeout(() => setShowMemberDropdown(false), 200)}
+                            placeholder="Type member name or ID..."
+                            required
+                            className="block w-full p-2 border rounded"
+                        />
+                        {showMemberDropdown && filteredMembers.length > 0 && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+                                {filteredMembers.map((member) => (
+                                    <div
+                                        key={member.MemberID}
+                                        onClick={() => handleMemberSelect(member)}
+                                        className="p-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
+                                    >
+                                        <div className="font-semibold">{member.FirstName} {member.LastName}</div>
+                                        <div className="text-sm text-gray-600">
+                                            ID: {member.MemberID} | Email: {member.Email || 'N/A'}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        {showMemberDropdown && filteredMembers.length === 0 && memberSearch && (
+                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg p-2">
+                                <div className="text-gray-500">No members found</div>
+                            </div>
+                        )}
+                    </div>
+                    {formData.MemberID && (
+                        <input type="hidden" name="MemberID" value={formData.MemberID} />
+                    )}
                 </label>
             </div>
 
@@ -175,7 +352,7 @@ return (
 
             <div className="mb-3">
                 <label className="block mb-1">
-                    Return Date:
+                    Return Date (optional):
                     <input
                         type="date"
                         name="ReturnDate"
