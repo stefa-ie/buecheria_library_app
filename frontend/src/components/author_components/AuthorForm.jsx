@@ -99,11 +99,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
 
     
     return (
-        <div className="my-4 p-4 bg-white rounded shadow">
-            <h2 className="text-2xl mb-4">
-                {updatingAuthor ? 'Update Author' : 'Add New Author'}
-            </h2>
-            <form onSubmit={updatingAuthor ? handleUpdate : handleCreate}>
+        <form onSubmit={updatingAuthor ? handleUpdate : handleCreate}>
                 <div className="mb-3">
                     <label className="block mb-1">
                         First Name:
@@ -166,7 +162,6 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                     )}
                 </div>
             </form>
-        </div>
     );
 }
 

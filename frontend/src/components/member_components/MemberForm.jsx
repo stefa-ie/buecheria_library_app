@@ -129,11 +129,7 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
 
     
     return (
-        <div className="my-4 p-4 bg-white rounded shadow">
-            <h2 className="text-2xl mb-4">
-                {updatingMember ? 'Update Member' : 'Add New Member'}
-            </h2>
-            <form onSubmit={updatingMember ? handleUpdate : handleCreate}>
+        <form onSubmit={updatingMember ? handleUpdate : handleCreate}>
                 <div className="mb-3">
                     <label className="block mb-1">
                         First Name:
@@ -268,7 +264,6 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                     )}
                 </div>
             </form>
-        </div>
     );
 }
 

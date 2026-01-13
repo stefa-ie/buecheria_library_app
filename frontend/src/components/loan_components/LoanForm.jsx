@@ -232,11 +232,7 @@ const handleCancelUpdate = () => {
 
 
 return (
-    <div className="my-4 p-4 bg-white rounded shadow">
-        <h2 className="text-2xl mb-4">
-            {updatingLoan ? 'Update Loan' : 'Add New Loan'}
-        </h2>
-        <form onSubmit={updatingLoan ? handleUpdate : handleCreate}>
+    <form onSubmit={updatingLoan ? handleUpdate : handleCreate}>
             <div className="mb-3">
                 <label className="block mb-1">
                     Book:
@@ -384,7 +380,6 @@ return (
                 )}
             </div>
         </form>
-    </div>
 );
 }
 

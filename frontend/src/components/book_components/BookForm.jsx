@@ -195,11 +195,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
 
     
     return (
-        <div className="my-4 p-4 bg-white rounded shadow">
-            <h2 className="text-2xl mb-4">
-                {updatingBook ? 'Update Book' : 'Add New Book'}
-            </h2>
-            <form onSubmit={updatingBook ? handleUpdate : handleCreate}>
+        <form onSubmit={updatingBook ? handleUpdate : handleCreate}>
                 <div className="mb-3">
                     <label className="block mb-1">
                         Title:
@@ -384,7 +380,6 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                     )}
                 </div>
             </form>
-        </div>
     );
 }
 
