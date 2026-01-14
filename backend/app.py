@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.database import Base, engine
-from routers import authors, books, members, loans, auth
+from .database.database import Base, engine
+from .routers import authors, books, members, loans, auth
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
