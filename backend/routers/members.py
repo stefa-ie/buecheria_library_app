@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from database.database import get_db
+from backend.database.database import get_db
 from models.member import Member
 from schemas.member import MemberResponse, MemberCreate, MemberUpdate
 

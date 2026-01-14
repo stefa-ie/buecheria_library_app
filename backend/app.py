@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database.database import Base, engine
+from backend.database.database import Base, engine
 from routers import authors, books, members, loans, auth
 
 # Create database tables
