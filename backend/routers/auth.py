@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from ..schemas.auth import LoginRequest, TokenResponse
-from ..auth import create_access_token
-from ..dependencies import get_current_user, get_current_admin
+from schemas.auth import LoginRequest, TokenResponse
+from auth import create_access_token
+from dependencies import get_current_user, get_current_admin
 from datetime import timedelta
 
 router = APIRouter()

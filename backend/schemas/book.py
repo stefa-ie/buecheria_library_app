@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional
 from pydantic import BaseModel
-from ..schemas.author import AuthorResponse, AuthorCreate
+from schemas.author import AuthorResponse, AuthorCreate
 
 # Pydantic model for response
 class BookResponse(BaseModel):

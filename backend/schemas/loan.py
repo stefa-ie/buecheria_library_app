@@ -1,8 +1,8 @@
 from datetime import date
 from pydantic import BaseModel, computed_field
 from typing import Optional
-from ..schemas.book import BookResponse
-from ..schemas.member import MemberResponse
+from schemas.book import BookResponse
+from schemas.member import MemberResponse
 
 # Pydantic model for response
 class LoanResponse(BaseModel):
