@@ -1,0 +1,670 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.9.4
+2 info using node@v22.21.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/.npmrc
+5 silly config load:file:/Users/Work/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm install @emailjs/browser
+8 verbose argv "install" "@emailjs/browser" "--cache" "/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/.npm-cache"
+9 verbose logfile logs-max:10 dir:/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/.npm-cache/_logs/2026-01-22T13_01_44_705Z-
+10 verbose logfile /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/.npm-cache/_logs/2026-01-22T13_01_44_705Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly idealTree buildDeps
+14 silly fetch manifest @emailjs/browser@*
+15 silly packumentCache full:https://registry.npmjs.org/@emailjs%2fbrowser cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/@emailjs%2fbrowser 214ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/@emailjs%2fbrowser set size:undefined disposed:false
+18 silly placeDep ROOT @emailjs/browser@4.4.1 OK for: frontend@0.0.0 want: *
+19 silly reify moves {}
+20 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-wasm32-wasi
+21 silly reify mark deleted [
+21 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-wasm32-wasi'
+21 silly reify ]
+22 silly audit bulk request {
+22 silly audit   '@babel/code-frame': [ '7.27.1' ],
+22 silly audit   '@babel/compat-data': [ '7.28.4' ],
+22 silly audit   '@babel/core': [ '7.28.4' ],
+22 silly audit   '@babel/generator': [ '7.28.3' ],
+22 silly audit   '@babel/helper-compilation-targets': [ '7.27.2' ],
+22 silly audit   '@babel/helper-globals': [ '7.28.0' ],
+22 silly audit   '@babel/helper-module-imports': [ '7.27.1' ],
+22 silly audit   '@babel/helper-module-transforms': [ '7.28.3' ],
+22 silly audit   '@babel/helper-plugin-utils': [ '7.27.1' ],
+22 silly audit   '@babel/helper-string-parser': [ '7.27.1' ],
+22 silly audit   '@babel/helper-validator-identifier': [ '7.27.1' ],
+22 silly audit   '@babel/helper-validator-option': [ '7.27.1' ],
+22 silly audit   '@babel/helpers': [ '7.28.4' ],
+22 silly audit   '@babel/parser': [ '7.28.4' ],
+22 silly audit   '@babel/plugin-transform-react-jsx-self': [ '7.27.1' ],
+22 silly audit   '@babel/plugin-transform-react-jsx-source': [ '7.27.1' ],
+22 silly audit   '@babel/template': [ '7.27.2' ],
+22 silly audit   '@babel/traverse': [ '7.28.4' ],
+22 silly audit   '@babel/types': [ '7.28.4' ],
+22 silly audit   '@esbuild/aix-ppc64': [ '0.27.2' ],
+22 silly audit   '@esbuild/android-arm': [ '0.27.2' ],
+22 silly audit   '@esbuild/android-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/android-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/darwin-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/darwin-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/freebsd-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/freebsd-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-arm': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-ia32': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-loong64': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-mips64el': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-ppc64': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-riscv64': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-s390x': [ '0.27.2' ],
+22 silly audit   '@esbuild/linux-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/netbsd-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/netbsd-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/openbsd-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/openbsd-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/openharmony-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/sunos-x64': [ '0.27.2' ],
+22 silly audit   '@esbuild/win32-arm64': [ '0.27.2' ],
+22 silly audit   '@esbuild/win32-ia32': [ '0.27.2' ],
+22 silly audit   '@esbuild/win32-x64': [ '0.27.2' ],
+22 silly audit   '@eslint-community/eslint-utils': [ '4.9.0' ],
+22 silly audit   'eslint-visitor-keys': [ '3.4.3', '4.2.1' ],
+22 silly audit   '@eslint-community/regexpp': [ '4.12.1' ],
+22 silly audit   '@eslint/config-array': [ '0.21.0' ],
+22 silly audit   '@eslint/config-helpers': [ '0.3.1' ],
+22 silly audit   '@eslint/core': [ '0.15.2' ],
+22 silly audit   '@eslint/eslintrc': [ '3.3.1' ],
+22 silly audit   globals: [ '14.0.0', '16.4.0' ],
+22 silly audit   '@eslint/js': [ '9.35.0' ],
+22 silly audit   '@eslint/object-schema': [ '2.1.6' ],
+22 silly audit   '@eslint/plugin-kit': [ '0.3.5' ],
+22 silly audit   '@humanfs/core': [ '0.19.1' ],
+22 silly audit   '@humanfs/node': [ '0.16.7' ],
+22 silly audit   '@humanwhocodes/module-importer': [ '1.0.1' ],
+22 silly audit   '@humanwhocodes/retry': [ '0.4.3' ],
+22 silly audit   '@isaacs/fs-minipass': [ '4.0.1' ],
+22 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+22 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+22 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+22 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+22 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+22 silly audit   '@rolldown/pluginutils': [ '1.0.0-beta.35' ],
+22 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-android-arm64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-darwin-arm64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-darwin-x64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-freebsd-x64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.50.2' ],
+22 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.50.2' ],
+22 silly audit   '@tailwindcss/node': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.1.14' ],
+22 silly audit   '@tailwindcss/vite': [ '4.1.14' ],
+22 silly audit   '@types/babel__core': [ '7.20.5' ],
+22 silly audit   '@types/babel__generator': [ '7.27.0' ],
+22 silly audit   '@types/babel__template': [ '7.4.4' ],
+22 silly audit   '@types/babel__traverse': [ '7.28.0' ],
+22 silly audit   '@types/estree': [ '1.0.8' ],
+22 silly audit   '@types/json-schema': [ '7.0.15' ],
+22 silly audit   '@types/react': [ '19.1.13' ],
+22 silly audit   '@types/react-dom': [ '19.1.9' ],
+22 silly audit   '@vitejs/plugin-react': [ '5.0.3' ],
+22 silly audit   acorn: [ '8.15.0' ],
+22 silly audit   'acorn-jsx': [ '5.3.2' ],
+22 silly audit   ajv: [ '6.12.6' ],
+22 silly audit   'ansi-styles': [ '4.3.0' ],
+22 silly audit   argparse: [ '2.0.1' ],
+22 silly audit   'balanced-match': [ '1.0.2' ],
+22 silly audit   'baseline-browser-mapping': [ '2.9.11' ],
+22 silly audit   'brace-expansion': [ '1.1.12' ],
+22 silly audit   browserslist: [ '4.26.2' ],
+22 silly audit   callsites: [ '3.1.0' ],
+22 silly audit   'caniuse-lite': [ '1.0.30001743' ],
+22 silly audit   chalk: [ '4.1.2' ],
+22 silly audit   chownr: [ '3.0.0' ],
+22 silly audit   'color-convert': [ '2.0.1' ],
+22 silly audit   'color-name': [ '1.1.4' ],
+22 silly audit   'concat-map': [ '0.0.1' ],
+22 silly audit   'convert-source-map': [ '2.0.0' ],
+22 silly audit   cookie: [ '1.0.2' ],
+22 silly audit   'cross-spawn': [ '7.0.6' ],
+22 silly audit   csstype: [ '3.1.3' ],
+22 silly audit   debug: [ '4.4.3' ],
+22 silly audit   'deep-is': [ '0.1.4' ],
+22 silly audit   'detect-libc': [ '2.1.2' ],
+22 silly audit   'electron-to-chromium': [ '1.5.220' ],
+22 silly audit   'enhanced-resolve': [ '5.18.3' ],
+22 silly audit   esbuild: [ '0.27.2' ],
+22 silly audit   escalade: [ '3.2.0' ],
+22 silly audit   'escape-string-regexp': [ '4.0.0' ],
+22 silly audit   eslint: [ '9.35.0' ],
+22 silly audit   'eslint-plugin-react-hooks': [ '5.2.0' ],
+22 silly audit   'eslint-plugin-react-refresh': [ '0.4.20' ],
+22 silly audit   'eslint-scope': [ '8.4.0' ],
+22 silly audit   espree: [ '10.4.0' ],
+22 silly audit   esquery: [ '1.6.0' ],
+22 silly audit   esrecurse: [ '4.3.0' ],
+22 silly audit   estraverse: [ '5.3.0' ],
+22 silly audit   esutils: [ '2.0.3' ],
+22 silly audit   'fast-deep-equal': [ '3.1.3' ],
+22 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+22 silly audit   'fast-levenshtein': [ '2.0.6' ],
+22 silly audit   fdir: [ '6.5.0' ],
+22 silly audit   'file-entry-cache': [ '8.0.0' ],
+22 silly audit   'find-up': [ '5.0.0' ],
+22 silly audit   'flat-cache': [ '4.0.1' ],
+22 silly audit   flatted: [ '3.3.3' ],
+22 silly audit   fsevents: [ '2.3.3' ],
+22 silly audit   gensync: [ '1.0.0-beta.2' ],
+22 silly audit   'glob-parent': [ '6.0.2' ],
+22 silly audit   'graceful-fs': [ '4.2.11' ],
+22 silly audit   'has-flag': [ '4.0.0' ],
+22 silly audit   ignore: [ '5.3.2' ],
+22 silly audit   'import-fresh': [ '3.3.1' ],
+22 silly audit   imurmurhash: [ '0.1.4' ],
+22 silly audit   'is-extglob': [ '2.1.1' ],
+22 silly audit   'is-glob': [ '4.0.3' ],
+22 silly audit   isexe: [ '2.0.0' ],
+22 silly audit   jiti: [ '2.6.1' ],
+22 silly audit   'js-tokens': [ '4.0.0' ],
+22 silly audit   'js-yaml': [ '4.1.1' ],
+22 silly audit   jsesc: [ '3.1.0' ],
+22 silly audit   'json-buffer': [ '3.0.1' ],
+22 silly audit   'json-schema-traverse': [ '0.4.1' ],
+22 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
+22 silly audit   json5: [ '2.2.3' ],
+22 silly audit   keyv: [ '4.5.4' ],
+22 silly audit   levn: [ '0.4.1' ],
+22 silly audit   lightningcss: [ '1.30.1' ],
+22 silly audit   'lightningcss-darwin-arm64': [ '1.30.1' ],
+22 silly audit   'lightningcss-darwin-x64': [ '1.30.1' ],
+22 silly audit   'lightningcss-freebsd-x64': [ '1.30.1' ],
+22 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.30.1' ],
+22 silly audit   'lightningcss-linux-arm64-gnu': [ '1.30.1' ],
+22 silly audit   'lightningcss-linux-arm64-musl': [ '1.30.1' ],
+22 silly audit   'lightningcss-linux-x64-gnu': [ '1.30.1' ],
+22 silly audit   'lightningcss-linux-x64-musl': [ '1.30.1' ],
+22 silly audit   'lightningcss-win32-arm64-msvc': [ '1.30.1' ],
+22 silly audit   'lightningcss-win32-x64-msvc': [ '1.30.1' ],
+22 silly audit   'locate-path': [ '6.0.0' ],
+22 silly audit   'lodash.merge': [ '4.6.2' ],
+22 silly audit   'lru-cache': [ '5.1.1' ],
+22 silly audit   'lucide-react': [ '0.546.0' ],
+22 silly audit   'magic-string': [ '0.30.19' ],
+22 silly audit   minimatch: [ '3.1.2' ],
+22 silly audit   minipass: [ '7.1.2' ],
+22 silly audit   minizlib: [ '3.1.0' ],
+22 silly audit   ms: [ '2.1.3' ],
+22 silly audit   nanoid: [ '3.3.11' ],
+22 silly audit   'natural-compare': [ '1.4.0' ],
+22 silly audit   'node-releases': [ '2.0.21' ],
+22 silly audit   optionator: [ '0.9.4' ],
+22 silly audit   'p-limit': [ '3.1.0' ],
+22 silly audit   'p-locate': [ '5.0.0' ],
+22 silly audit   'parent-module': [ '1.0.1' ],
+22 silly audit   'path-exists': [ '4.0.0' ],
+22 silly audit   'path-key': [ '3.1.1' ],
+22 silly audit   picocolors: [ '1.1.1' ],
+22 silly audit   picomatch: [ '4.0.3' ],
+22 silly audit   postcss: [ '8.5.6' ],
+22 silly audit   'prelude-ls': [ '1.2.1' ],
+22 silly audit   punycode: [ '2.3.1' ],
+22 silly audit   react: [ '19.1.1' ],
+22 silly audit   'react-dom': [ '19.1.1' ],
+22 silly audit   'react-refresh': [ '0.17.0' ],
+22 silly audit   'react-router': [ '7.9.4' ],
+22 silly audit   'react-router-dom': [ '7.9.4' ],
+22 silly audit   'resolve-from': [ '4.0.0' ],
+22 silly audit   rollup: [ '4.50.2' ],
+22 silly audit   scheduler: [ '0.26.0' ],
+22 silly audit   semver: [ '6.3.1' ],
+22 silly audit   'set-cookie-parser': [ '2.7.1' ],
+22 silly audit   'shebang-command': [ '2.0.0' ],
+22 silly audit   'shebang-regex': [ '3.0.0' ],
+22 silly audit   'source-map-js': [ '1.2.1' ],
+22 silly audit   'strip-json-comments': [ '3.1.1' ],
+22 silly audit   'supports-color': [ '7.2.0' ],
+22 silly audit   tailwindcss: [ '4.1.14' ],
+22 silly audit   tapable: [ '2.3.0' ],
+22 silly audit   tar: [ '7.5.2' ],
+22 silly audit   yallist: [ '5.0.0', '3.1.1' ],
+22 silly audit   tinyglobby: [ '0.2.15' ],
+22 silly audit   'type-check': [ '0.4.0' ],
+22 silly audit   'update-browserslist-db': [ '1.1.3' ],
+22 silly audit   'uri-js': [ '4.4.1' ],
+22 silly audit   vite: [ '7.3.0' ],
+22 silly audit   which: [ '2.0.2' ],
+22 silly audit   'word-wrap': [ '1.2.5' ],
+22 silly audit   'yocto-queue': [ '0.1.0' ],
+22 silly audit   '@emailjs/browser': [ '4.4.1' ],
+22 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.1.14' ]
+22 silly audit }
+23 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-win32-x64-msvc
+24 silly reify mark deleted [
+24 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-win32-x64-msvc'
+24 silly reify ]
+25 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-win32-arm64-msvc
+26 silly reify mark deleted [
+26 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-win32-arm64-msvc'
+26 silly reify ]
+27 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-x64-musl
+28 silly reify mark deleted [
+28 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-x64-musl'
+28 silly reify ]
+29 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-x64-gnu
+30 silly reify mark deleted [
+30 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-x64-gnu'
+30 silly reify ]
+31 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm64-musl
+32 silly reify mark deleted [
+32 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm64-musl'
+32 silly reify ]
+33 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm64-gnu
+34 silly reify mark deleted [
+34 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm64-gnu'
+34 silly reify ]
+35 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm-gnueabihf
+36 silly reify mark deleted [
+36 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-linux-arm-gnueabihf'
+36 silly reify ]
+37 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-freebsd-x64
+38 silly reify mark deleted [
+38 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-freebsd-x64'
+38 silly reify ]
+39 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-darwin-x64
+40 silly reify mark deleted [
+40 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/lightningcss-darwin-x64'
+40 silly reify ]
+41 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-win32-x64-msvc
+42 silly reify mark deleted [
+42 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+42 silly reify ]
+43 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-win32-arm64-msvc
+44 silly reify mark deleted [
+44 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+44 silly reify ]
+45 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-x64-musl
+46 silly reify mark deleted [
+46 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-x64-musl'
+46 silly reify ]
+47 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-x64-gnu
+48 silly reify mark deleted [
+48 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-x64-gnu'
+48 silly reify ]
+49 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm64-musl
+50 silly reify mark deleted [
+50 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+50 silly reify ]
+51 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm64-gnu
+52 silly reify mark deleted [
+52 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm64-gnu'
+52 silly reify ]
+53 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf
+54 silly reify mark deleted [
+54 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+54 silly reify ]
+55 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-freebsd-x64
+56 silly reify mark deleted [
+56 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-freebsd-x64'
+56 silly reify ]
+57 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-darwin-x64
+58 silly reify mark deleted [
+58 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-darwin-x64'
+58 silly reify ]
+59 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-android-arm64
+60 silly reify mark deleted [
+60 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@tailwindcss/oxide-android-arm64'
+60 silly reify ]
+61 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-x64-msvc
+62 silly reify mark deleted [
+62 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-x64-msvc'
+62 silly reify ]
+63 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-ia32-msvc
+64 silly reify mark deleted [
+64 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-ia32-msvc'
+64 silly reify ]
+65 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-arm64-msvc
+66 silly reify mark deleted [
+66 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-win32-arm64-msvc'
+66 silly reify ]
+67 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-openharmony-arm64
+68 silly reify mark deleted [
+68 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-openharmony-arm64'
+68 silly reify ]
+69 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-x64-musl
+70 silly reify mark deleted [
+70 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-x64-musl'
+70 silly reify ]
+71 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-x64-gnu
+72 silly reify mark deleted [
+72 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-x64-gnu'
+72 silly reify ]
+73 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-s390x-gnu
+74 silly reify mark deleted [
+74 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-s390x-gnu'
+74 silly reify ]
+75 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-riscv64-musl
+76 silly reify mark deleted [
+76 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-riscv64-musl'
+76 silly reify ]
+77 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-riscv64-gnu
+78 silly reify mark deleted [
+78 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-riscv64-gnu'
+78 silly reify ]
+79 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-ppc64-gnu
+80 silly reify mark deleted [
+80 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-ppc64-gnu'
+80 silly reify ]
+81 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-loong64-gnu
+82 silly reify mark deleted [
+82 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-loong64-gnu'
+82 silly reify ]
+83 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm64-musl
+84 silly reify mark deleted [
+84 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm64-musl'
+84 silly reify ]
+85 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm64-gnu
+86 silly reify mark deleted [
+86 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm64-gnu'
+86 silly reify ]
+87 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm-musleabihf
+88 silly reify mark deleted [
+88 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm-musleabihf'
+88 silly reify ]
+89 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm-gnueabihf
+90 silly reify mark deleted [
+90 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-linux-arm-gnueabihf'
+90 silly reify ]
+91 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-freebsd-x64
+92 silly reify mark deleted [
+92 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-freebsd-x64'
+92 silly reify ]
+93 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-freebsd-arm64
+94 silly reify mark deleted [
+94 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-freebsd-arm64'
+94 silly reify ]
+95 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-darwin-x64
+96 silly reify mark deleted [
+96 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-darwin-x64'
+96 silly reify ]
+97 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-android-arm64
+98 silly reify mark deleted [
+98 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-android-arm64'
+98 silly reify ]
+99 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-android-arm-eabi
+100 silly reify mark deleted [
+100 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@rollup/rollup-android-arm-eabi'
+100 silly reify ]
+101 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-x64
+102 silly reify mark deleted [
+102 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-x64'
+102 silly reify ]
+103 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-ia32
+104 silly reify mark deleted [
+104 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-ia32'
+104 silly reify ]
+105 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-arm64
+106 silly reify mark deleted [
+106 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/win32-arm64'
+106 silly reify ]
+107 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/sunos-x64
+108 silly reify mark deleted [
+108 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/sunos-x64'
+108 silly reify ]
+109 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openharmony-arm64
+110 silly reify mark deleted [
+110 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openharmony-arm64'
+110 silly reify ]
+111 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openbsd-x64
+112 silly reify mark deleted [
+112 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openbsd-x64'
+112 silly reify ]
+113 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openbsd-arm64
+114 silly reify mark deleted [
+114 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/openbsd-arm64'
+114 silly reify ]
+115 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/netbsd-x64
+116 silly reify mark deleted [
+116 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/netbsd-x64'
+116 silly reify ]
+117 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/netbsd-arm64
+118 silly reify mark deleted [
+118 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/netbsd-arm64'
+118 silly reify ]
+119 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-x64
+120 silly reify mark deleted [
+120 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-x64'
+120 silly reify ]
+121 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-s390x
+122 silly reify mark deleted [
+122 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-s390x'
+122 silly reify ]
+123 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-riscv64
+124 silly reify mark deleted [
+124 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-riscv64'
+124 silly reify ]
+125 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-ppc64
+126 silly reify mark deleted [
+126 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-ppc64'
+126 silly reify ]
+127 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-mips64el
+128 silly reify mark deleted [
+128 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-mips64el'
+128 silly reify ]
+129 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-loong64
+130 silly reify mark deleted [
+130 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-loong64'
+130 silly reify ]
+131 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-ia32
+132 silly reify mark deleted [
+132 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-ia32'
+132 silly reify ]
+133 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-arm64
+134 silly reify mark deleted [
+134 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-arm64'
+134 silly reify ]
+135 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-arm
+136 silly reify mark deleted [
+136 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/linux-arm'
+136 silly reify ]
+137 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/freebsd-x64
+138 silly reify mark deleted [
+138 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/freebsd-x64'
+138 silly reify ]
+139 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/freebsd-arm64
+140 silly reify mark deleted [
+140 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/freebsd-arm64'
+140 silly reify ]
+141 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/darwin-x64
+142 silly reify mark deleted [
+142 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/darwin-x64'
+142 silly reify ]
+143 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-x64
+144 silly reify mark deleted [
+144 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-x64'
+144 silly reify ]
+145 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-arm64
+146 silly reify mark deleted [
+146 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-arm64'
+146 silly reify ]
+147 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-arm
+148 silly reify mark deleted [
+148 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/android-arm'
+148 silly reify ]
+149 verbose reify failed optional dependency /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/aix-ppc64
+150 silly reify mark deleted [
+150 silly reify   '/Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend/node_modules/@esbuild/aix-ppc64'
+150 silly reify ]
+151 http cache @emailjs/browser@https://registry.npmjs.org/@emailjs/browser/-/browser-4.4.1.tgz 0ms (cache hit)
+152 silly tarball no local data for @emailjs/browser@https://registry.npmjs.org/@emailjs/browser/-/browser-4.4.1.tgz. Extracting by manifest.
+153 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 230ms
+154 silly audit report {
+154 silly audit report   'react-router': [
+154 silly audit report     {
+154 silly audit report       id: 1112051,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-h5cw-625j-3rxh',
+154 silly audit report       title: 'React Router has CSRF issue in Action/Server Action Request Processing',
+154 silly audit report       severity: 'moderate',
+154 silly audit report       vulnerable_versions: '>=7.0.0 <=7.11.0',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     },
+154 silly audit report     {
+154 silly audit report       id: 1112053,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-2w69-qvjg-hvjx',
+154 silly audit report       title: 'React Router vulnerable to XSS via Open Redirects',
+154 silly audit report       severity: 'high',
+154 silly audit report       vulnerable_versions: '>=7.0.0 <=7.11.0',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     },
+154 silly audit report     {
+154 silly audit report       id: 1112055,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-8v8x-cx79-35w7',
+154 silly audit report       title: 'React Router SSR XSS in ScrollRestoration',
+154 silly audit report       severity: 'high',
+154 silly audit report       vulnerable_versions: '>=7.0.0 <7.12.0',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     },
+154 silly audit report     {
+154 silly audit report       id: 1112056,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-9jcx-v3wj-wh4m',
+154 silly audit report       title: 'React Router has unexpected external redirect via untrusted paths',
+154 silly audit report       severity: 'moderate',
+154 silly audit report       vulnerable_versions: '>=7.0.0 <7.9.6',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     }
+154 silly audit report   ],
+154 silly audit report   tar: [
+154 silly audit report     {
+154 silly audit report       id: 1112255,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-8qq5-rm4j-mr97',
+154 silly audit report       title: 'node-tar is Vulnerable to Arbitrary File Overwrite and Symlink Poisoning via Insufficient Path Sanitization',
+154 silly audit report       severity: 'high',
+154 silly audit report       vulnerable_versions: '<=7.5.2',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     },
+154 silly audit report     {
+154 silly audit report       id: 1112329,
+154 silly audit report       url: 'https://github.com/advisories/GHSA-r6q2-hw4h-h46w',
+154 silly audit report       title: 'Race Condition in node-tar Path Reservations via Unicode Ligature Collisions on macOS APFS',
+154 silly audit report       severity: 'high',
+154 silly audit report       vulnerable_versions: '<=7.5.3',
+154 silly audit report       cwe: [Array],
+154 silly audit report       cvss: [Object]
+154 silly audit report     }
+154 silly audit report   ]
+154 silly audit report }
+155 silly packumentCache corgi:https://registry.npmjs.org/react-router cache-miss
+156 silly packumentCache corgi:https://registry.npmjs.org/tar cache-miss
+157 http fetch GET 200 https://registry.npmjs.org/react-router 93ms (cache miss)
+158 silly packumentCache corgi:https://registry.npmjs.org/react-router set size:undefined disposed:false
+159 http fetch GET 200 https://registry.npmjs.org/tar 168ms (cache miss)
+160 silly packumentCache corgi:https://registry.npmjs.org/tar set size:undefined disposed:false
+161 silly packumentCache corgi:https://registry.npmjs.org/react-router-dom cache-miss
+162 http fetch GET 200 https://registry.npmjs.org/@emailjs/browser/-/browser-4.4.1.tgz 403ms (cache miss)
+163 http fetch GET 200 https://registry.npmjs.org/react-router-dom 109ms (cache miss)
+164 silly packumentCache corgi:https://registry.npmjs.org/react-router-dom set size:undefined disposed:false
+165 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2foxide cache-miss
+166 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2foxide 122ms (cache miss)
+167 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2foxide set size:undefined disposed:false
+168 silly ADD node_modules/@emailjs/browser
+169 silly ADD
+170 silly ADD
+171 silly ADD
+172 silly ADD
+173 silly ADD
+174 silly ADD
+175 silly ADD
+176 silly ADD
+177 silly ADD
+178 silly ADD
+179 silly ADD
+180 silly ADD
+181 silly ADD
+182 silly ADD
+183 silly ADD
+184 silly ADD
+185 silly ADD
+186 silly ADD
+187 silly ADD
+188 silly ADD
+189 silly ADD
+190 silly ADD
+191 silly ADD
+192 silly ADD
+193 silly ADD
+194 silly ADD
+195 silly ADD
+196 silly ADD
+197 silly ADD
+198 silly ADD
+199 silly ADD
+200 silly ADD
+201 silly ADD
+202 silly ADD
+203 silly ADD
+204 silly ADD
+205 silly ADD
+206 silly ADD
+207 silly ADD
+208 silly ADD
+209 silly ADD
+210 silly ADD
+211 silly ADD
+212 silly ADD
+213 silly ADD
+214 silly ADD
+215 silly ADD
+216 silly ADD
+217 silly ADD
+218 silly ADD
+219 silly ADD
+220 silly ADD
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 silly ADD
+226 silly ADD
+227 silly ADD
+228 silly ADD
+229 silly ADD
+230 silly ADD
+231 silly ADD
+232 silly ADD
+233 silly ADD
+234 verbose cwd /Users/Work/VisualStudioCode/buecheria_cursor/buecheria_library_app/frontend
+235 verbose os Darwin 23.5.0
+236 verbose node v22.21.0
+237 verbose npm  v10.9.4
+238 verbose exit 0
+239 info ok
