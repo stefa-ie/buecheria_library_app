@@ -68,7 +68,7 @@ export default function MembersPage() {
             {/* Page Header */}
             <div className="mb-6 flex items-center justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Members</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-slate-300 mb-2">Members</h1>
                     <p className="text-gray-600">Manage library members</p>
                 </div>
                 <button
@@ -104,7 +104,7 @@ export default function MembersPage() {
                     {showForm && (
                         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-6">
                             <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-2xl font-bold text-gray-900">
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-300">
                                     {updatingMember ? 'Update Member' : 'Add New Member'}
                                 </h2>
                                 <button

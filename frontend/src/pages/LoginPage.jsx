@@ -81,7 +81,7 @@ export default function LoginPage() {
             {/* Main Content */}
             <main className="max-w-md mx-auto px-6 py-16">
                 <div className="bg-white rounded-lg shadow-md p-8 border border-gray-200">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Login</h2>
+                    <h2 className="text-3xl font-bold text-gray-900 dark:text-slate-300 mb-2">Login</h2>
                     <p className="text-gray-600 mb-6">Melden Sie sich bei Ihrem Konto an</p>
 
                     <form onSubmit={handleSubmit}>
