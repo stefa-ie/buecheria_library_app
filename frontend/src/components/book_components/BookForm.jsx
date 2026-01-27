@@ -12,6 +12,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
         PublicationDate: "",
         Genre: "",
         Available: true,
+        CoverUrl: "",
     });
 
     const [authors, setAuthors] = React.useState([]);
@@ -47,6 +48,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 PublicationDate: updatingBook.PublicationDate || "",
                 Genre: updatingBook.Genre || "",
                 Available: updatingBook.Available ?? true,
+                CoverUrl: updatingBook.CoverUrl || "",
             });
         } else {
             setFormData({
@@ -56,6 +58,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 PublicationDate: "",
                 Genre: "",
                 Available: true,
+                CoverUrl: "",
             });
         }
     }, [updatingBook]);
@@ -69,6 +72,25 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
             [name]: value,
         }));
     }
+
+    const normalizeIsbn = (isbn) => isbn.replace(/[^0-9X]/gi, "").toUpperCase();
+
+    const getOpenLibraryCover = (isbn) => {
+        const normalized = normalizeIsbn(isbn);
+        if (!normalized) return "";
+        return `https://covers.openlibrary.org/b/isbn/${normalized}-M.jpg?default=false`;
+    };
+
+    const handleUseOpenLibraryCover = () => {
+        if (!formData.Isbn) {
+            alert("Please add an ISBN first.");
+            return;
+        }
+        setFormData((prevData) => ({
+            ...prevData,
+            CoverUrl: getOpenLibraryCover(prevData.Isbn),
+        }));
+    };
 
 
     // Handle form submission for create
@@ -89,6 +111,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 PublicationDate: "",
                 Genre: "",
                 Available: true,
+                CoverUrl: "",
             });
             alert('Book created successfully!');
         } catch (error) {
@@ -115,6 +138,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 PublicationDate: "",
                 Genre: "",
                 Available: true,
+                CoverUrl: "",
             });
             alert('Book updated successfully!');
         } catch (error) {
@@ -135,6 +159,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
             PublicationDate: "",
             Genre: "",
             Available: true,
+            CoverUrl: "",
         });
     };
 
@@ -282,12 +307,13 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                 </div>
                                 <div className="mb-3">
                                     <label className="block mb-1 text-sm">
-                                        Birth Date:
+                                        Birth Date (optional):
                                         <input
-                                            type="date"
+                                            type="text"
                                             name="BirthDate"
                                             value={newAuthorData.BirthDate}
                                             onChange={handleNewAuthorChange}
+                                            placeholder="YYYY or MM-YYYY or DD-MM-YYYY"
                                             className="block w-full p-2 border rounded mt-1"
                                         />
                                     </label>
@@ -307,12 +333,35 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 <div className="mb-3">
                     <label className="block mb-1">
                         ISBN:
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                name="Isbn"
+                                value={formData.Isbn}
+                                onChange={handleChange}
+                                required
+                                className="block w-full p-2 border rounded"
+                            />
+                            <button
+                                type="button"
+                                onClick={handleUseOpenLibraryCover}
+                                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 whitespace-nowrap"
+                            >
+                                Fetch Cover
+                            </button>
+                        </div>
+                    </label>
+                </div>
+
+                <div className="mb-3">
+                    <label className="block mb-1">
+                        Cover URL (optional):
                         <input
-                            type="text"
-                            name="Isbn"
-                            value={formData.Isbn}
+                            type="url"
+                            name="CoverUrl"
+                            value={formData.CoverUrl}
                             onChange={handleChange}
-                            required
+                            placeholder="https://..."
                             className="block w-full p-2 border rounded"
                         />
                     </label>

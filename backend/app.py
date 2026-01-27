@@ -2,9 +2,22 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database.database import Base, engine
 from routers import authors, books, members, loans, auth
+from sqlalchemy import text
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
+
+
+def ensure_books_cover_url_column():
+    with engine.connect() as connection:
+        columns = connection.execute(text("PRAGMA table_info(books)")).fetchall()
+        column_names = {column[1] for column in columns}
+        if "CoverUrl" not in column_names:
+            connection.execute(text("ALTER TABLE books ADD COLUMN CoverUrl VARCHAR"))
+            connection.commit()
+
+
+ensure_books_cover_url_column()
 
 app = FastAPI(title="Buecheria API")
 

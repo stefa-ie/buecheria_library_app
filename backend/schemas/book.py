@@ -12,6 +12,7 @@ class BookResponse(BaseModel):
     PublicationDate: Optional[date] = None
     Genre: Optional[str] = None
     Available: Optional[bool] = None
+    CoverUrl: Optional[str] = None
     author: Optional[AuthorResponse] = None  # optional nested author
 
     class Config:
@@ -26,6 +27,7 @@ class BookCreate(BaseModel):
     PublicationDate: date
     Genre: str
     Available: bool = True
+    CoverUrl: Optional[str] = None
 
 
 # Pydantic model for creating a new book with optional new author
@@ -36,6 +38,7 @@ class BookCreateWithAuthor(BaseModel):
     PublicationDate: date
     Genre: str
     Available: bool = True
+    CoverUrl: Optional[str] = None
     NewAuthor: Optional[AuthorCreate] = None
 
 
@@ -47,4 +50,5 @@ class BookUpdate(BaseModel):
     PublicationDate: Optional[date] = None
     Genre: Optional[str] = None
     Available: Optional[bool] = None
+    CoverUrl: Optional[str] = None
 

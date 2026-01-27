@@ -12,6 +12,7 @@ class Book(Base):
     PublicationDate = Column(Date, index=True)
     Genre = Column(String, index=True)
     Available = Column(Boolean, default=True, index=True)
+    CoverUrl = Column(String)
 
     # Many-to-one relationship (Books -> Author)
     author = relationship("Author", back_populates="books")

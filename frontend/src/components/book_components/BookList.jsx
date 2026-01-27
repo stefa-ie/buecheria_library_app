@@ -4,6 +4,18 @@ import { deleteBook } from "../../api/books";
 
 // BookList component to display a list of books
 export default function BookList({ books, onBookDeleted, onBookUpdate }) {
+    const normalizeIsbn = (isbn) => isbn.replace(/[^0-9X]/gi, "").toUpperCase();
+
+    const getOpenLibraryCover = (isbn) => {
+        const normalized = normalizeIsbn(isbn || "");
+        if (!normalized) return "";
+        return `https://covers.openlibrary.org/b/isbn/${normalized}-S.jpg?default=false`;
+    };
+
+    const getCoverUrl = (book) => {
+        return book.CoverUrl || getOpenLibraryCover(book.Isbn);
+    };
+
     // Handle book deletion
     const handleDelete = async (bookId) => {
         if (window.confirm('Are you sure you want to delete this book?')) {
@@ -33,6 +45,9 @@ export default function BookList({ books, onBookDeleted, onBookUpdate }) {
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                 ID
+                            </th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                                Cover
                             </th>
                             <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                                 Title
@@ -65,6 +80,22 @@ export default function BookList({ books, onBookDeleted, onBookUpdate }) {
                             >
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {book.BookID}
+                                </td>
+                                <td className="px-6 py-4">
+                                    {getCoverUrl(book) ? (
+                                        <img
+                                            src={getCoverUrl(book)}
+                                            alt={`Cover for ${book.Title || "book"}`}
+                                            className="h-12 w-9 rounded object-cover border border-gray-200"
+                                            onError={(event) => {
+                                                event.currentTarget.style.display = "none";
+                                            }}
+                                        />
+                                    ) : (
+                                        <div className="h-12 w-9 rounded border border-dashed border-gray-300 text-[10px] text-gray-400 flex items-center justify-center">
+                                            No cover
+                                        </div>
+                                    )}
                                 </td>
                                 <td className="px-6 py-4 text-sm text-gray-900 font-medium">
                                     {book.Title || 'N/A'}

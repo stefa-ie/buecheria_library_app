@@ -42,7 +42,8 @@ def create_book(book: BookCreateWithAuthor, db: Session = Depends(get_db)):
         Isbn=book.Isbn,
         PublicationDate=book.PublicationDate,
         Genre=book.Genre,
-        Available=book.Available
+        Available=book.Available,
+        CoverUrl=book.CoverUrl
     )
     db.add(db_book)
     db.commit()
@@ -63,6 +64,7 @@ def update_book(book_id: int, book: BookUpdate, db: Session = Depends(get_db)):
     db_book.PublicationDate = book.PublicationDate if book.PublicationDate is not None else db_book.PublicationDate
     db_book.Genre = book.Genre if book.Genre is not None else db_book.Genre
     db_book.Available = book.Available if book.Available is not None else db_book.Available
+    db_book.CoverUrl = book.CoverUrl if book.CoverUrl is not None else db_book.CoverUrl
 
     db.commit()
     db.refresh(db_book)

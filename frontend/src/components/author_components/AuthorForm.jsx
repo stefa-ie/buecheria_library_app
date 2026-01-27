@@ -130,12 +130,13 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
 
                 <div className="mb-3">
                     <label className="block mb-1">
-                        Birth Date:
+                        Birth Date (optional):
                         <input
-                            type="date"
+                            type="text"
                             name="BirthDate"
                             value={formData.BirthDate}
                             onChange={handleChange}
+                            placeholder="YYYY or MM-YYYY or DD-MM-YYYY"
                             className="block w-full p-2 border rounded"
                         />
                     </label>
