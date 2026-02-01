@@ -1,4 +1,4 @@
-const API_URL = '/api';
+const API_URL = 'render_address/api';
 
 // Login function
 export async function login(username, password) {

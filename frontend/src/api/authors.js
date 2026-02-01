@@ -1,4 +1,4 @@
-const API_URL = '/api';
+const API_URL = 'render_address/api';
 
 // Fetch all authors
 export async function fetchAuthors() {
