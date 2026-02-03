@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login, setToken } from "../api/auth";
+import backgroundImage from "../assets/buecheria_bg.jpeg";
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -43,7 +44,10 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-white">
+        <div
+            className="min-h-screen w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
             {/* Header */}
             <header className="bg-white border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-6 py-4">
