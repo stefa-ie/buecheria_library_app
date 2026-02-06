@@ -1,4 +1,4 @@
-const API_URL = 'render_address/api';
+const API_URL = 'https://buecheria-library-app.onrender.com/api';
 
 // Fetch all books
 export async function fetchBooks() {
