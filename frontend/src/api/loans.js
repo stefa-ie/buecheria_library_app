@@ -1,4 +1,4 @@
-const API_URL = 'https://buecheria-library-app.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Fetch all loans
 export async function fetchLoans() {
