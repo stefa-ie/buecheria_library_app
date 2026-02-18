@@ -1,13 +1,33 @@
 import { Link, Outlet } from "react-router-dom";
+import { useRef, useEffect } from "react";
 import useTheme from "../hooks/useTheme";
 
 export default function PublicLayout() {
     const { theme, toggleTheme } = useTheme();
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        const el = headerRef.current;
+        if (!el) return;
+        const setHeight = () => {
+            document.documentElement.style.setProperty(
+                "--header-height",
+                `${el.getBoundingClientRect().height}px`
+            );
+        };
+        setHeight();
+        const ro = new ResizeObserver(setHeight);
+        ro.observe(el);
+        return () => ro.disconnect();
+    }, []);
 
     return (
         <div className="min-h-screen bg-white dark:bg-slate-900 flex flex-col">
             {/* Header */}
-            <header className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700">
+            <header
+                ref={headerRef}
+                className="bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 shrink-0"
+            >
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
                         {/* Navigation */}
@@ -50,8 +70,8 @@ export default function PublicLayout() {
                 </div>
             </header>
 
-            {/* Main Content */}
-            <main className="flex-1 min-h-screen">
+            {/* Main Content - content-sized so no gap between carousel and footer on homepage */}
+            <main>
                 <Outlet />
             </main>
 
