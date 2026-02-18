@@ -57,7 +57,7 @@ export default function BuecherPage() {
                                 key={book.BookID}
                                 className="group rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                             >
-                                <div className="aspect-[3/4] w-full overflow-hidden border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
+                                <div className="aspect-[3/4] w-full overflow-hidden border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
                                     {coverUrl ? (
                                         <img
                                             src={coverUrl}
