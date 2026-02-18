@@ -31,17 +31,17 @@ export default function BookList({ books, onBookDeleted, onBookUpdate }) {
 
     if (books.length === 0) {
         return (
-            <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-8 text-center">
+            <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-8 text-center">
                 <p className="text-gray-500 dark:text-slate-400">No books found.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
                 <table className="w-full">
-                    <thead className="bg-gray-50 dark:bg-slate-700/50 border-b border-gray-200 dark:border-slate-600">
+                    <thead className="bg-gray-50 dark:!bg-slate-700/50 border-b border-gray-200 dark:border-slate-600">
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
                                 ID
@@ -72,7 +72,7 @@ export default function BookList({ books, onBookDeleted, onBookUpdate }) {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-slate-600">
+                    <tbody className="bg-white dark:!bg-slate-800 divide-y divide-gray-200 dark:divide-slate-600">
                         {books.map((book) => (
                             <tr 
                                 key={book.BookID}

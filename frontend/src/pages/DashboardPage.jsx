@@ -54,7 +54,7 @@ export default function DashboardPage() {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Books Card */}
-        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
+        <Card className="p-6 bg-white dark:!bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
@@ -72,7 +72,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Authors Card */}
-        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
+        <Card className="p-6 bg-white dark:!bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
@@ -90,7 +90,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Members Card */}
-        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
+        <Card className="p-6 bg-white dark:!bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
@@ -108,7 +108,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Loans Card */}
-        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
+        <Card className="p-6 bg-white dark:!bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>

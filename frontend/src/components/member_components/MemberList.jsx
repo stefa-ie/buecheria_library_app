@@ -19,17 +19,17 @@ export default function MemberList({ members, onMemberDeleted, onMemberUpdate}) 
 
     if (members.length === 0) {
         return (
-            <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-8 text-center">
+            <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-8 text-center">
                 <p className="text-gray-500 dark:text-slate-400">No members found.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
                 <table className="w-full">
-                    <thead className="bg-gray-50 dark:bg-slate-700/50 border-b border-gray-200 dark:border-slate-600">
+                    <thead className="bg-gray-50 dark:!bg-slate-700/50 border-b border-gray-200 dark:border-slate-600">
                         <tr>
                             <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wider">
                                 ID
@@ -54,7 +54,7 @@ export default function MemberList({ members, onMemberDeleted, onMemberUpdate}) 
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-slate-600">
+                    <tbody className="bg-white dark:!bg-slate-800 divide-y divide-gray-200 dark:divide-slate-600">
                         {members.map((member) => (
                             <tr 
                                 key={member.MemberID}
@@ -82,7 +82,7 @@ export default function MemberList({ members, onMemberDeleted, onMemberUpdate}) 
                                             Admin
                                         </span>
                                     ) : (
-                                        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-700 dark:text-slate-300 bg-gray-50 dark:bg-slate-700/50 rounded-full">
+                                        <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-700 dark:text-slate-300 bg-gray-50 dark:!bg-slate-700/50 rounded-full">
                                             Member
                                         </span>
                                     )}

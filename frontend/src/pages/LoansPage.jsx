@@ -91,7 +91,7 @@ export default function LoansPage() {
 
             {/* Loading State */}
             {loading && (
-                <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-8 text-center">
+                <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-8 text-center">
                     <p className="text-gray-600 dark:text-slate-400">Loading loans...</p>
                 </div>
             )}
@@ -108,7 +108,7 @@ export default function LoansPage() {
                 <>
                     {/* Form Section */}
                     {showForm && (
-                        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-6 mb-6">
+                        <div className="bg-white dark:!bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-6 mb-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-300">
                                     {updatingLoan ? 'Update Loan' : 'Add New Loan'}

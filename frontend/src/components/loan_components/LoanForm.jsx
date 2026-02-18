@@ -231,7 +231,7 @@ const handleCancelUpdate = () => {
 };
 
 
-const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:!bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
 const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
 
 return (
@@ -251,7 +251,7 @@ return (
                             className={inputClass}
                         />
                         {showBookDropdown && filteredBooks.length > 0 && (
-                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:!bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
                                 {filteredBooks.map((book) => (
                                     <div
                                         key={book.BookID}
@@ -268,7 +268,7 @@ return (
                             </div>
                         )}
                         {showBookDropdown && filteredBooks.length === 0 && bookSearch && (
-                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:!bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
                                 <div className="text-gray-500 dark:text-slate-400">No books found</div>
                             </div>
                         )}
@@ -294,7 +294,7 @@ return (
                             className={inputClass}
                         />
                         {showMemberDropdown && filteredMembers.length > 0 && (
-                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:!bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
                                 {filteredMembers.map((member) => (
                                     <div
                                         key={member.MemberID}
@@ -310,7 +310,7 @@ return (
                             </div>
                         )}
                         {showMemberDropdown && filteredMembers.length === 0 && memberSearch && (
-                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:!bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
                                 <div className="text-gray-500 dark:text-slate-400">No members found</div>
                             </div>
                         )}

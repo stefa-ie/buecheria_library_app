@@ -219,7 +219,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
     };
 
     
-    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:!bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
     const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
 
     return (
@@ -277,7 +277,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                     </label>
                     
                     {showNewAuthorForm && (
-                        <div className="mt-3 p-4 bg-gray-50 dark:bg-slate-800/50 border border-gray-300 dark:border-slate-600 rounded">
+                        <div className="mt-3 p-4 bg-gray-50 dark:!bg-slate-800/50 border border-gray-300 dark:border-slate-600 rounded">
                             <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-slate-200">Add New Author</h3>
                             <div>
                                 <div className="mb-3">

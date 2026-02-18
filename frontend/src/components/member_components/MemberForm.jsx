@@ -128,7 +128,7 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
     };
 
     
-    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:!bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
     const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
 
     return (

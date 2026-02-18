@@ -24,7 +24,7 @@ function Button({ children, className = "", variant = "default", ...props }) {
 function Input({ className = "", ...props }) {
   return (
     <input
-      className={`border border-gray-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 ${className}`}
+      className={`border border-gray-300 dark:border-slate-700 rounded-md px-3 py-2 text-sm bg-white dark:!bg-slate-800 text-gray-900 dark:text-slate-100 ${className}`}
       {...props}
     />
   )
@@ -77,7 +77,7 @@ export default function Layout() {
           <div className="flex items-center gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-slate-400" />
-              <Input type="search" placeholder="Search books, authors, members, ..." className="pl-10 w-80 bg-gray-50 dark:bg-slate-800" />
+              <Input type="search" placeholder="Search books, authors, members, ..." className="pl-10 w-80 bg-gray-50 dark:!bg-slate-800" />
             </div>
             <Button variant="outline" className="gap-2 bg-transparent" onClick={toggleTheme} aria-pressed={theme === "dark"}>
               {theme === "dark" ? "Light" : "Dark"}
@@ -157,7 +157,7 @@ export default function Layout() {
         </aside>
 
         {/* Main Content - Outlet renders child routes here */}
-        <main className="flex-1 overflow-y-auto p-8">
+        <main className="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-slate-900">
           <Outlet />
         </main>
       </div>
