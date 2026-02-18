@@ -4,6 +4,7 @@ load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database.database import Base, engine
+from models.user import User  # noqa: F401 - ensure users table is created
 from routers import authors, books, members, loans, auth, instagram
 from sqlalchemy import text
 

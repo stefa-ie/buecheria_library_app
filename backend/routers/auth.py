@@ -1,48 +1,41 @@
 from fastapi import APIRouter, HTTPException, status, Depends
+from sqlalchemy.orm import Session
 from schemas.auth import LoginRequest, TokenResponse
 from auth import create_access_token
 from dependencies import get_current_user, get_current_admin
+from database.database import get_db
+from models.user import User
 from datetime import timedelta
 
 router = APIRouter()
 
-# Simple user database (in production, use actual database)
-# For now, we'll use hardcoded admin user
-USERS_DB = {
-    "admin": {
-        "password": "adminpassword",
-        "role": "admin"
-    }
-}
 
 @router.post("/login", response_model=TokenResponse)
-def login(login_data: LoginRequest):
-    """Login endpoint that returns JWT token"""
+def login(login_data: LoginRequest, db: Session = Depends(get_db)):
+    """Login endpoint that returns JWT token. Users are stored in the `users` table."""
     try:
         username = login_data.username
         password = login_data.password
-        
-        # Check if user exists and password is correct
-        user = USERS_DB.get(username)
-        if not user or user["password"] != password:
+
+        user = db.query(User).filter(User.Username == username).first()
+        if not user or user.Password != password:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Incorrect username or password",
                 headers={"WWW-Authenticate": "Bearer"},
             )
-        
-        # Create access token
+
         access_token_expires = timedelta(minutes=30)
         access_token = create_access_token(
-            data={"sub": username, "role": user["role"]},
+            data={"sub": username, "role": user.Role},
             expires_delta=access_token_expires
         )
-        
+
         return TokenResponse(
             access_token=access_token,
             token_type="bearer",
             username=username,
-            role=user["role"]
+            role=user.Role
         )
     except HTTPException:
         # Re-raise HTTP exceptions (like 401)
