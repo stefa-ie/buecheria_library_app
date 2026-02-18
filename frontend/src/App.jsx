@@ -11,6 +11,7 @@ import BuecherPage from "./pages/BuecherPage"
 import VeranstaltungenPage from "./pages/VeranstaltungenPage"
 import UeberUnsPage from "./pages/UeberUnsPage"
 import KontaktPage from "./pages/KontaktPage"
+import PlaceholderPage from "./pages/PlaceholderPage"
 import PublicLayout from "./components/PublicLayout"
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
                     <Route path="/veranstaltungen" element={<VeranstaltungenPage />}/> 
                     <Route path="/ueber-uns" element={<UeberUnsPage />}/> 
                     <Route path="/kontakt" element={<KontaktPage />}/> 
+                    <Route path="/impressum" element={<PlaceholderPage slug="impressum" />}/> 
+                    <Route path="/datenschutz" element={<PlaceholderPage slug="datenschutz" />}/> 
+                    <Route path="/cookie-einstellungen" element={<PlaceholderPage slug="cookie-einstellungen" />}/> 
+                    <Route path="/barrierefreiheit" element={<PlaceholderPage slug="barrierefreiheit" />}/> 
                 </Route>
                 <Route path="/login" element={<LoginPage />}/> 
                 

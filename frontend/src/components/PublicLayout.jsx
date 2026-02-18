@@ -57,8 +57,14 @@ export default function PublicLayout() {
 
             {/* Footer */}
             <footer className="border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900">
-                <div className="max-w-7xl mx-auto px-6 py-8 flex items-center justify-between text-sm text-gray-600 dark:text-slate-400">
+                <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600 dark:text-slate-400">
                     <p>© Bücheria – Feministische und queere Stadtteilbibliothek</p>
+                    <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Rechtliches und Informationen">
+                        <Link to="/impressum" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Impressum</Link>
+                        <Link to="/datenschutz" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Datenschutzerklärung</Link>
+                        <Link to="/cookie-einstellungen" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Cookie‑Einstellungen</Link>
+                        <Link to="/barrierefreiheit" className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors">Barrierefreiheitserklärung</Link>
+                    </nav>
                     <div className="flex items-center gap-6">
                         <span>Vogelhüttendeich 30, 21107 HH</span>
                         <span>hallo@buecheria.example</span>

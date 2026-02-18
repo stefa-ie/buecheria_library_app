@@ -1,7 +1,10 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database.database import Base, engine
-from routers import authors, books, members, loans, auth
+from routers import authors, books, members, loans, auth, instagram
 from sqlalchemy import text
 
 # Create database tables
@@ -37,6 +40,7 @@ app.include_router(authors.router, prefix="/api", tags=["Authors"])
 app.include_router(books.router, prefix="/api", tags=["Books"])
 app.include_router(members.router, prefix="/api", tags=["Members"])
 app.include_router(loans.router, prefix="/api", tags=["Loans"])
+app.include_router(instagram.router, prefix="/api", tags=["Instagram"])
 
 
 @app.get("/")

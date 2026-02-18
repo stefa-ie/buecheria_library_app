@@ -104,6 +104,9 @@ npm run preview
 
 - **API URL**: Configure in `frontend/.env` with `VITE_API_URL`
 - **EmailJS**: Set up contact form credentials in `frontend/.env`
+- **Instagram feed**: Two options:
+  - **Without Instagram admin access**: Use a third-party widget that only needs the public username. Sign up at a service like [Stormlikes](https://stormlikes.com/embed-instagram-feed), [EmbedSocial](https://embedsocial.com/free-instagram-widget/), or [Behold](https://behold.so/), enter `@buecheria_wilhelmsburg`, get the embed URL, and set `VITE_INSTAGRAM_EMBED_URL` in `frontend/.env`. The feed will show in an iframe.
+  - **With Instagram admin access**: Set `INSTAGRAM_ACCESS_TOKEN` and `INSTAGRAM_USER_ID` in the backend (e.g. `backend/.env`) using a [Meta app](https://developers.facebook.com/) and Instagram Graph API for a native grid.
 - **Styling**: Modify `tailwind.config.js` or component styles
 - **Database**: SQLite file located at `backend/database/buecheria.db`
 
