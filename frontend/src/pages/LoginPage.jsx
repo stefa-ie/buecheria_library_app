@@ -39,7 +39,7 @@ export default function LoginPage() {
 
     return (
         <div
-            className="min-h-[60vh] w-full bg-cover bg-center flex items-center"
+            className="min-h-[calc(100vh-var(--header-height,80px))] w-full bg-cover bg-center flex items-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
             <main className="max-w-md mx-auto px-6 py-16 w-full">

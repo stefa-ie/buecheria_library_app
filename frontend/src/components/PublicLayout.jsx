@@ -1,10 +1,23 @@
-import { Link, Outlet } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
 import useTheme from "../hooks/useTheme";
 
 export default function PublicLayout() {
     const { theme, toggleTheme } = useTheme();
     const headerRef = useRef(null);
+    const location = useLocation();
+    const isLoginPage = location.pathname === "/login";
+    const [showFooter, setShowFooter] = useState(!isLoginPage);
+
+    useEffect(() => {
+        if (!isLoginPage) {
+            setShowFooter(true);
+            return;
+        }
+        const onScroll = () => setShowFooter(window.scrollY > 20);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [isLoginPage]);
 
     useEffect(() => {
         const el = headerRef.current;
@@ -75,8 +88,12 @@ export default function PublicLayout() {
                 <Outlet />
             </main>
 
-            {/* Footer */}
-            <footer className="border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+            {/* Footer - on login page only visible after user scrolls */}
+            <footer
+                className={`border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 shrink-0 transition-opacity duration-300 ${
+                    isLoginPage && !showFooter ? "opacity-0 pointer-events-none" : "opacity-100"
+                }`}
+            >
                 <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600 dark:text-slate-400">
                     <p>© Bücheria – Feministische und queere Stadtteilbibliothek</p>
                     <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Rechtliches und Informationen">
