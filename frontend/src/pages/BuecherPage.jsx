@@ -32,8 +32,7 @@ export default function BuecherPage() {
         <section className="max-w-7xl mx-auto px-6 py-16">
             <h1 className="text-4xl font-bold text-gray-900 dark:text-slate-300">Bücher</h1>
             <p className="mt-4 text-gray-700 dark:text-slate-300">
-                Entdecke unsere Sammlung – Cover werden automatisch geladen (Open Library)
-                oder manuell gepflegt.
+                Entdecke unsere Sammlung und komme vorbei, um in deinen Fund reinzulesen oder auszuleihen.
             </p>
 
             {loading && (
@@ -57,12 +56,12 @@ export default function BuecherPage() {
                                 key={book.BookID}
                                 className="group rounded-2xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                             >
-                                <div className="aspect-[3/4] w-full overflow-hidden border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800">
+                                <div className="aspect-[3/4] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 flex items-center justify-center">
                                     {coverUrl ? (
                                         <img
                                             src={coverUrl}
                                             alt={`Cover von ${book.Title || "Buch"}`}
-                                            className="h-full w-full object-cover"
+                                            className="h-full w-full object-contain"
                                             onError={(event) => {
                                                 event.currentTarget.src = "";
                                             }}
