@@ -98,10 +98,13 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
     };
 
     
+    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+    const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
+
     return (
         <form onSubmit={updatingAuthor ? handleUpdate : handleCreate}>
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         First Name:
                         <input
                             type="text"
@@ -109,13 +112,13 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                             value={formData.FirstName}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Last Name:
                         <input
                             type="text"
@@ -123,13 +126,13 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                             value={formData.LastName}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Birth Date (optional):
                         <input
                             type="text"
@@ -137,7 +140,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                             value={formData.BirthDate}
                             onChange={handleChange}
                             placeholder="YYYY or MM-YYYY or DD-MM-YYYY"
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
@@ -145,7 +148,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                 <div className="flex gap-2">
                     <button 
                         type="submit"
-                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                     >
                         {updatingAuthor ? 'Update Author' : 'Add Author'}
                     </button>
@@ -156,7 +159,7 @@ export default function AuthorForm({ onAuthorCreated, onAuthorUpdated, updatingA
                         <button 
                             type="button"
                             onClick={handleCancelUpdate}
-                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 dark:bg-slate-600 dark:hover:bg-slate-500"
                         >
                             Cancel
                         </button>

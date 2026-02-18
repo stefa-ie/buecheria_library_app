@@ -128,10 +128,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
     };
 
     
+    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+    const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
+
     return (
         <form onSubmit={updatingMember ? handleUpdate : handleCreate}>
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         First Name:
                         <input
                             type="text"
@@ -139,13 +142,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.FirstName}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Last Name:
                         <input
                             type="text"
@@ -153,13 +156,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.LastName}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Email:
                         <input
                             type="email"
@@ -167,13 +170,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.Email}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Phone:
                         <input
                             type="tel"
@@ -181,13 +184,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.Phone}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Address:
                         <textarea
                             name="Address"
@@ -195,13 +198,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             onChange={handleChange}
                             required
                             rows="3"
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Birth Date:
                         <input
                             type="date"
@@ -209,13 +212,13 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.BirthDate}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Join Date:
                         <input
                             type="date"
@@ -223,19 +226,19 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                             value={formData.JoinDate}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Membership Status:
                         <select
                             name="MembershipStatus"
                             value={formData.MembershipStatus}
                             onChange={handleChange}
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         >
                             <option value="Member">Member</option>
                             <option value="Admin">Admin</option>
@@ -246,7 +249,7 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                 <div className="flex gap-2">
                     <button 
                         type="submit"
-                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                     >
                         {updatingMember ? 'Update Member' : 'Add Member'}
                     </button>
@@ -257,7 +260,7 @@ export default function MemberForm({ onMemberCreated, onMemberUpdated, updatingM
                         <button 
                             type="button"
                             onClick={handleCancelUpdate}
-                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 dark:bg-slate-600 dark:hover:bg-slate-500"
                         >
                             Cancel
                         </button>

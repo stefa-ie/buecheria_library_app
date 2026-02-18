@@ -219,10 +219,13 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
     };
 
     
+    const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+    const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
+
     return (
         <form onSubmit={updatingBook ? handleUpdate : handleCreate}>
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Title:
                         <input
                             type="text"
@@ -230,13 +233,13 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                             value={formData.Title}
                             onChange={handleChange}
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Author:
                         <div className="flex gap-2">
                             <select
@@ -244,7 +247,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                 value={formData.AuthorID}
                                 onChange={handleChange}
                                 required
-                                className="block flex-1 p-2 border rounded"
+                                className={`${inputClass} flex-1`}
                                 disabled={showNewAuthorForm}
                             >
                                 <option value="">Select Author</option>
@@ -266,7 +269,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                         });
                                     }
                                 }}
-                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 whitespace-nowrap"
+                                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 whitespace-nowrap"
                             >
                                 {showNewAuthorForm ? 'Cancel' : '+ New Author'}
                             </button>
@@ -274,11 +277,11 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                     </label>
                     
                     {showNewAuthorForm && (
-                        <div className="mt-3 p-4 bg-gray-50 border border-gray-300 rounded">
-                            <h3 className="text-lg font-semibold mb-3">Add New Author</h3>
+                        <div className="mt-3 p-4 bg-gray-50 dark:bg-slate-800/50 border border-gray-300 dark:border-slate-600 rounded">
+                            <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-slate-200">Add New Author</h3>
                             <div>
                                 <div className="mb-3">
-                                    <label className="block mb-1 text-sm">
+                                    <label className="block mb-1 text-sm text-gray-700 dark:text-slate-200">
                                         First Name:
                                         <input
                                             type="text"
@@ -286,13 +289,13 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                             value={newAuthorData.FirstName}
                                             onChange={handleNewAuthorChange}
                                             required
-                                            className="block w-full p-2 border rounded mt-1"
+                                            className={`${inputClass} mt-1`}
                                             placeholder="First Name"
                                         />
                                     </label>
                                 </div>
                                 <div className="mb-3">
-                                    <label className="block mb-1 text-sm">
+                                    <label className="block mb-1 text-sm text-gray-700 dark:text-slate-200">
                                         Last Name:
                                         <input
                                             type="text"
@@ -300,13 +303,13 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                             value={newAuthorData.LastName}
                                             onChange={handleNewAuthorChange}
                                             required
-                                            className="block w-full p-2 border rounded mt-1"
+                                            className={`${inputClass} mt-1`}
                                             placeholder="Last Name"
                                         />
                                     </label>
                                 </div>
                                 <div className="mb-3">
-                                    <label className="block mb-1 text-sm">
+                                    <label className="block mb-1 text-sm text-gray-700 dark:text-slate-200">
                                         Birth Date (optional):
                                         <input
                                             type="text"
@@ -314,14 +317,14 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                             value={newAuthorData.BirthDate}
                                             onChange={handleNewAuthorChange}
                                             placeholder="YYYY or MM-YYYY or DD-MM-YYYY"
-                                            className="block w-full p-2 border rounded mt-1"
+                                            className={`${inputClass} mt-1`}
                                         />
                                     </label>
                                 </div>
                                 <button
                                     type="button"
                                     onClick={handleCreateAuthor}
-                                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                                 >
                                     Add Author
                                 </button>
@@ -331,7 +334,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         ISBN:
                         <div className="flex gap-2">
                             <input
@@ -340,12 +343,12 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                                 value={formData.Isbn}
                                 onChange={handleChange}
                                 required
-                                className="block w-full p-2 border rounded"
+                                className={inputClass}
                             />
                             <button
                                 type="button"
                                 onClick={handleUseOpenLibraryCover}
-                                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 whitespace-nowrap"
+                                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 dark:bg-purple-600 dark:hover:bg-purple-500 whitespace-nowrap"
                             >
                                 Fetch Cover
                             </button>
@@ -354,7 +357,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Cover URL (optional):
                         <input
                             type="url"
@@ -362,45 +365,45 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                             value={formData.CoverUrl}
                             onChange={handleChange}
                             placeholder="https://..."
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Publication Date:
                         <input
                             type="date"
                             name="PublicationDate"
                             value={formData.PublicationDate}
                             onChange={handleChange}
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Genre:
                         <input
                             type="text"
                             name="Genre"
                             value={formData.Genre}
                             onChange={handleChange}
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                     </label>
                 </div>
 
                 <div className="mb-3">
-                    <label className="block mb-1">
+                    <label className={labelClass}>
                         Available:
                         <select
                             name="Available"
                             value={formData.Available}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, Available: e.target.value === 'true' }))}
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         >
                             <option value="true">Yes</option>
                             <option value="false">No</option>
@@ -411,7 +414,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                 <div className="flex gap-2">
                     <button 
                         type="submit"
-                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                     >
                         {updatingBook ? 'Update Book' : 'Add Book'}
                     </button>
@@ -422,7 +425,7 @@ export default function BookForm({ onBookCreated, onBookUpdated, updatingBook, o
                         <button 
                             type="button"
                             onClick={handleCancelUpdate}
-                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                            className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 dark:bg-slate-600 dark:hover:bg-slate-500"
                         >
                             Cancel
                         </button>

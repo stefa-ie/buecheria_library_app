@@ -2,6 +2,7 @@ import { BookOpen, Users, BarChart3, Search, LogOut } from "lucide-react"
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import React from "react";
 import { isAuthenticated, removeToken } from "../api/auth";
+import buecheriaLogo from "../assets/buecheria_logo.jpg";
 import useTheme from "../hooks/useTheme";
 
 // Basic Button component
@@ -62,9 +63,11 @@ export default function Layout() {
       <header className="flex-shrink-0 bg-white dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 px-6 py-4 h-[89px]">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-3">
-            <div className="w-14 h-14 bg-yellow-500 rounded-full flex items-center justify-center">
-              <BookOpen className="w-7 h-7 text-white" />
-            </div>
+            <img
+              src={buecheriaLogo}
+              alt="Bücheria"
+              className="w-14 h-14 rounded-full object-cover"
+            />
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-300">BÜCHERIA</h1>
               <p className="text-sm text-gray-600 dark:text-slate-400">Admin Dashboard</p>

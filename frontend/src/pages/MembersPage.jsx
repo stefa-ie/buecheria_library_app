@@ -69,7 +69,7 @@ export default function MembersPage() {
             <div className="mb-6 flex items-center justify-between">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 dark:text-slate-300 mb-2">Members</h1>
-                    <p className="text-gray-600">Manage library members</p>
+                    <p className="text-gray-600 dark:text-slate-400">Manage library members</p>
                 </div>
                 <button
                     onClick={() => {
@@ -85,15 +85,15 @@ export default function MembersPage() {
 
             {/* Loading State */}
             {loading && (
-                <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-                    <p className="text-gray-600">Loading members...</p>
+                <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 p-8 text-center">
+                    <p className="text-gray-600 dark:text-slate-400">Loading members...</p>
                 </div>
             )}
 
             {/* Error State */}
             {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-700">Error: {error}</p>
+                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                    <p className="text-red-700 dark:text-red-300">Error: {error}</p>
                 </div>
             )}
 
@@ -102,14 +102,14 @@ export default function MembersPage() {
                 <>
                     {/* Form Section */}
                     {showForm && (
-                        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 mb-6">
+                        <div className="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 shadow-sm p-6 mb-6">
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-slate-300">
                                     {updatingMember ? 'Update Member' : 'Add New Member'}
                                 </h2>
                                 <button
                                     onClick={handleCancelUpdate}
-                                    className="text-gray-400 hover:text-gray-600 transition-colors"
+                                    className="text-gray-400 dark:text-slate-400 hover:text-gray-600 dark:hover:text-slate-200 transition-colors"
                                 >
                                     <X className="w-6 h-6" />
                                 </button>

@@ -7,7 +7,7 @@ import { fetchLoans } from "../api/loans";
 
 // Basic Card component
 function Card({ children, className = "" }) {
-  return <div className={`shadow-sm ${className}`}>{children}</div>
+  return <div className={`shadow-sm dark:shadow-md dark:shadow-black/20 ${className}`}>{children}</div>
 }
 
 export default function DashboardPage() {
@@ -54,72 +54,72 @@ export default function DashboardPage() {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Books Card */}
-        <Card className="p-6 bg-white rounded-2xl border border-gray-200">
+        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Total number</p>
-              <p className="text-sm text-gray-600 mb-3">of Books</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">of Books</p>
               {loading ? (
-                <p className="text-4xl font-bold text-gray-900">...</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">...</p>
               ) : (
-                <p className="text-4xl font-bold text-gray-900">{formatNumber(booksCount)}</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">{formatNumber(booksCount)}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-purple-50 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
               <BookOpen className="w-6 h-6 text-purple-400" />
             </div>
           </div>
         </Card>
 
         {/* Authors Card */}
-        <Card className="p-6 bg-white rounded-2xl border border-gray-200">
+        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Total number</p>
-              <p className="text-sm text-gray-600 mb-3">of Authors</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">of Authors</p>
               {loading ? (
-                <p className="text-4xl font-bold text-gray-900">...</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">...</p>
               ) : (
-                <p className="text-4xl font-bold text-gray-900">{formatNumber(authorsCount)}</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">{formatNumber(authorsCount)}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
               <Users className="w-6 h-6 text-blue-400" />
             </div>
           </div>
         </Card>
 
         {/* Members Card */}
-        <Card className="p-6 bg-white rounded-2xl border border-gray-200">
+        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Total number</p>
-              <p className="text-sm text-gray-600 mb-3">of Members</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">of Members</p>
               {loading ? (
-                <p className="text-4xl font-bold text-gray-900">...</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">...</p>
               ) : (
-                <p className="text-4xl font-bold text-gray-900">{formatNumber(membersCount)}</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">{formatNumber(membersCount)}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-green-50 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
               <Users className="w-6 h-6 text-green-400" />
             </div>
           </div>
         </Card>
 
         {/* Loans Card */}
-        <Card className="p-6 bg-white rounded-2xl border border-gray-200">
+        <Card className="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-gray-200 dark:border-slate-700">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-sm text-gray-600 mb-1">Total number</p>
-              <p className="text-sm text-gray-600 mb-3">of Loans</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-1">Total number</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">of Loans</p>
               {loading ? (
-                <p className="text-4xl font-bold text-gray-900">...</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">...</p>
               ) : (
-                <p className="text-4xl font-bold text-gray-900">{formatNumber(loansCount)}</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-slate-100">{formatNumber(loansCount)}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center">
+            <div className="w-12 h-12 bg-orange-50 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
               <Library className="w-6 h-6 text-orange-400" />
             </div>
           </div>
@@ -128,8 +128,8 @@ export default function DashboardPage() {
 
       {/* Error State */}
       {error && (
-        <div className="mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
-          <p className="text-red-700">Error loading dashboard data: {error}</p>
+        <div className="mt-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+          <p className="text-red-700 dark:text-red-300">Error loading dashboard data: {error}</p>
         </div>
       )}
     </div>

@@ -231,10 +231,13 @@ const handleCancelUpdate = () => {
 };
 
 
+const inputClass = "block w-full p-2 border border-gray-300 dark:border-slate-600 rounded bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400";
+const labelClass = "block mb-1 text-gray-700 dark:text-slate-200";
+
 return (
     <form onSubmit={updatingLoan ? handleUpdate : handleCreate}>
             <div className="mb-3">
-                <label className="block mb-1">
+                <label className={labelClass}>
                     Book:
                     <div className="relative">
                         <input
@@ -245,18 +248,18 @@ return (
                             onBlur={() => setTimeout(() => setShowBookDropdown(false), 200)}
                             placeholder="Type book title, ISBN, or ID..."
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                         {showBookDropdown && filteredBooks.length > 0 && (
-                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
                                 {filteredBooks.map((book) => (
                                     <div
                                         key={book.BookID}
                                         onClick={() => handleBookSelect(book)}
-                                        className="p-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
+                                        className="p-2 hover:bg-blue-50 dark:hover:bg-slate-700 cursor-pointer border-b border-gray-100 dark:border-slate-600"
                                     >
-                                        <div className="font-semibold">{book.Title || 'Untitled'}</div>
-                                        <div className="text-sm text-gray-600">
+                                        <div className="font-semibold text-gray-900 dark:text-slate-200">{book.Title || 'Untitled'}</div>
+                                        <div className="text-sm text-gray-600 dark:text-slate-400">
                                             ID: {book.BookID} | ISBN: {book.Isbn || 'N/A'}
                                             {book.author && ` | Author: ${book.author.FirstName || ''} ${book.author.LastName || ''}`.trim()}
                                         </div>
@@ -265,8 +268,8 @@ return (
                             </div>
                         )}
                         {showBookDropdown && filteredBooks.length === 0 && bookSearch && (
-                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg p-2">
-                                <div className="text-gray-500">No books found</div>
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
+                                <div className="text-gray-500 dark:text-slate-400">No books found</div>
                             </div>
                         )}
                     </div>
@@ -277,7 +280,7 @@ return (
             </div>
 
             <div className="mb-3">
-                <label className="block mb-1">
+                <label className={labelClass}>
                     Member:
                     <div className="relative">
                         <input
@@ -288,18 +291,18 @@ return (
                             onBlur={() => setTimeout(() => setShowMemberDropdown(false), 200)}
                             placeholder="Type member name or ID..."
                             required
-                            className="block w-full p-2 border rounded"
+                            className={inputClass}
                         />
                         {showMemberDropdown && filteredMembers.length > 0 && (
-                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg max-h-60 overflow-y-auto">
                                 {filteredMembers.map((member) => (
                                     <div
                                         key={member.MemberID}
                                         onClick={() => handleMemberSelect(member)}
-                                        className="p-2 hover:bg-blue-50 cursor-pointer border-b border-gray-100"
+                                        className="p-2 hover:bg-blue-50 dark:hover:bg-slate-700 cursor-pointer border-b border-gray-100 dark:border-slate-600"
                                     >
-                                        <div className="font-semibold">{member.FirstName} {member.LastName}</div>
-                                        <div className="text-sm text-gray-600">
+                                        <div className="font-semibold text-gray-900 dark:text-slate-200">{member.FirstName} {member.LastName}</div>
+                                        <div className="text-sm text-gray-600 dark:text-slate-400">
                                             ID: {member.MemberID} | Email: {member.Email || 'N/A'}
                                         </div>
                                     </div>
@@ -307,8 +310,8 @@ return (
                             </div>
                         )}
                         {showMemberDropdown && filteredMembers.length === 0 && memberSearch && (
-                            <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded shadow-lg p-2">
-                                <div className="text-gray-500">No members found</div>
+                            <div className="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 rounded shadow-lg p-2">
+                                <div className="text-gray-500 dark:text-slate-400">No members found</div>
                             </div>
                         )}
                     </div>
@@ -319,7 +322,7 @@ return (
             </div>
 
             <div className="mb-3">
-                <label className="block mb-1">
+                <label className={labelClass}>
                     Issue Date:
                     <input
                         type="date"
@@ -327,13 +330,13 @@ return (
                         value={formData.LoanDate}
                         onChange={handleChange}
                         required
-                        className="block w-full p-2 border rounded"
+                        className={inputClass}
                     />
                 </label>
             </div>
 
             <div className="mb-3">
-                <label className="block mb-1">
+                <label className={labelClass}>
                     Due Date:
                     <input
                         type="date"
@@ -341,20 +344,20 @@ return (
                         value={formData.DueDate}
                         onChange={handleChange}
                         required
-                        className="block w-full p-2 border rounded"
+                        className={inputClass}
                     />
                 </label>
             </div>
 
             <div className="mb-3">
-                <label className="block mb-1">
+                <label className={labelClass}>
                     Return Date (optional):
                     <input
                         type="date"
                         name="ReturnDate"
                         value={formData.ReturnDate}
                         onChange={handleChange}
-                        className="block w-full p-2 border rounded"
+                        className={inputClass}
                     />
                 </label>
             </div>
@@ -362,7 +365,7 @@ return (
             <div className="flex gap-2">
                 <button 
                     type="submit"
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700"
                 >
                     {updatingLoan ? 'Update Loan' : 'Add Loan'}
                 </button>
@@ -373,7 +376,7 @@ return (
                     <button 
                         type="button"
                         onClick={handleCancelUpdate}
-                        className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                        className="ml-2 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 dark:bg-slate-600 dark:hover:bg-slate-500"
                     >
                         Cancel
                     </button>
