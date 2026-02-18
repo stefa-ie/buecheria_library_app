@@ -1,12 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login, setToken } from "../api/auth";
-import useTheme from "../hooks/useTheme";
 import backgroundImage from "../assets/buecheria_bg.jpeg";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const { theme, toggleTheme } = useTheme();
     const [formData, setFormData] = React.useState({
         username: "",
         password: "",
@@ -20,7 +18,6 @@ export default function LoginPage() {
             ...prevData,
             [name]: value,
         }));
-        // Clear error when user types
         if (error) setError("");
     };
 
@@ -30,13 +27,8 @@ export default function LoginPage() {
         setError("");
         
         try {
-            // Call backend login API
             const response = await login(formData.username, formData.password);
-            
-            // Store JWT token and user info
             setToken(response.access_token, response.username, response.role);
-            
-            // Redirect to dashboard
             navigate("/dashboard");
         } catch (err) {
             setError(err.message || "Ungültiger Benutzername oder Passwort");
@@ -47,55 +39,10 @@ export default function LoginPage() {
 
     return (
         <div
-            className="min-h-screen w-full bg-cover bg-center"
+            className="min-h-[60vh] w-full bg-cover bg-center flex items-center"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            {/* Header */}
-            <header className="bg-white dark:bg-slate-900/95 border-b border-gray-200 dark:border-slate-700">
-                <div className="max-w-7xl mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        {/* Navigation */}
-                        <nav className="flex items-center gap-8">
-                            <Link to="/" className="text-gray-900 dark:text-slate-100 font-medium hover:text-purple-600 transition-colors">
-                                HOME
-                            </Link>
-                            <Link to="/buecher" className="text-gray-900 dark:text-slate-100 font-medium hover:text-purple-600 transition-colors">
-                                BÜCHER
-                            </Link>
-                            <Link to="/veranstaltungen" className="text-gray-900 dark:text-slate-100 font-medium hover:text-purple-600 transition-colors">
-                                VERANSTALTUNGEN
-                            </Link>
-                            <Link to="/ueber-uns" className="text-gray-900 dark:text-slate-100 font-medium hover:text-purple-600 transition-colors">
-                                ÜBER UNS
-                            </Link>
-                            <Link to="/kontakt" className="text-gray-900 dark:text-slate-100 font-medium hover:text-purple-600 transition-colors">
-                                KONTAKT
-                            </Link>
-                        </nav>
-
-                        {/* Theme toggle & Login */}
-                        <div className="flex items-center gap-3">
-                            <button
-                                type="button"
-                                onClick={toggleTheme}
-                                className="px-4 py-2 rounded-lg border border-gray-200 dark:border-slate-700 text-sm font-medium text-gray-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
-                                aria-pressed={theme === "dark"}
-                            >
-                                {theme === "dark" ? "Light" : "Dark"}
-                            </button>
-                            <Link 
-                                to="/login"
-                                className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
-                            >
-                                Login
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* Main Content */}
-            <main className="max-w-md mx-auto px-6 py-16">
+            <main className="max-w-md mx-auto px-6 py-16 w-full">
                 <div className="bg-white dark:bg-slate-900 rounded-lg shadow-md p-8 border border-gray-200 dark:border-slate-700">
                     <h2 className="text-3xl font-bold text-gray-900 dark:text-slate-300 mb-2">Login</h2>
                     <p className="text-gray-600 dark:text-slate-400 mb-6">Melden Sie sich bei Ihrem Konto an</p>

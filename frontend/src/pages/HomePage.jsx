@@ -10,9 +10,12 @@ const SLIDES = [
 ];
 
 const INTERVAL_MS = 5000;
+const TITLE_TEXT = "BÜCHERIA";
+const TYPEWRITER_DELAY_MS = 120;
 
 export default function HomePage() {
     const [index, setIndex] = useState(0);
+    const [titleLength, setTitleLength] = useState(0);
 
     useEffect(() => {
         const id = setInterval(() => {
@@ -20,6 +23,12 @@ export default function HomePage() {
         }, INTERVAL_MS);
         return () => clearInterval(id);
     }, []);
+
+    useEffect(() => {
+        if (titleLength >= TITLE_TEXT.length) return;
+        const id = setTimeout(() => setTitleLength((n) => n + 1), TYPEWRITER_DELAY_MS);
+        return () => clearTimeout(id);
+    }, [titleLength]);
 
     return (
         <>
@@ -51,16 +60,19 @@ export default function HomePage() {
                     </div>
                 ))}
 
-                {/* Overlay with title */}
-                <div className="absolute inset-0 z-10 flex items-center justify-start bg-black/20 pointer-events-none">
-                    <div className="max-w-7xl mx-auto px-6 w-full">
-                        <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-slate-300 drop-shadow-sm">
-                            Bücheria
+                {/* Overlay with title - in first third vertically */}
+                <div className="absolute inset-0 z-10 flex items-start justify-center bg-black/20 pointer-events-none pt-[12%]">
+                    <div className="max-w-7xl mx-auto px-6 w-full text-center">
+                        <h1 className="text-7xl sm:text-8xl md:text-9xl font-bold text-gray-50 dark:text-slate-300 drop-shadow-sm tracking-tight min-h-[1.2em]">
+                            {TITLE_TEXT.slice(0, titleLength)}
+                            {titleLength < TITLE_TEXT.length && (
+                                <span className="animate-pulse" aria-hidden>|</span>
+                            )}
                         </h1>
-                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-slate-300 drop-shadow-sm mt-2">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-50 dark:text-slate-300 drop-shadow-sm mt-2">
                             Feministische und queere Stadtteilbibliothek
                         </h2>
-                        <p className="text-gray-800 dark:text-slate-200 mt-2 drop-shadow-sm">
+                        <p className="text-gray-50 dark:text-slate-200 mt-2 drop-shadow-sm">
                             🏠 Vogelhüttendeich 30, 21107 HH
                         </p>
                     </div>

@@ -21,6 +21,7 @@ function App() {
                 {/* Public routes - shared header/footer */}
                 <Route element={<PublicLayout />}>
                     <Route path="/" element={<HomePage />}/> 
+                    <Route path="/login" element={<LoginPage />}/> 
                     <Route path="/buecher" element={<BuecherPage />}/> 
                     <Route path="/veranstaltungen" element={<VeranstaltungenPage />}/> 
                     <Route path="/ueber-uns" element={<UeberUnsPage />}/> 
@@ -29,8 +30,7 @@ function App() {
                     <Route path="/datenschutz" element={<PlaceholderPage slug="datenschutz" />}/> 
                     <Route path="/cookie-einstellungen" element={<PlaceholderPage slug="cookie-einstellungen" />}/> 
                     <Route path="/barrierefreiheit" element={<PlaceholderPage slug="barrierefreiheit" />}/> 
-                </Route>
-                <Route path="/login" element={<LoginPage />}/> 
+                </Route> 
                 
                 {/* Protected routes - with layout (header & sidebar) */}
                 <Route element={<Layout />}>
