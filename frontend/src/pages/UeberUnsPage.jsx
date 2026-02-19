@@ -56,8 +56,14 @@ export default function UeberUnsPage() {
             </p>
             <p className="mt-4 text-gray-600 dark:text-slate-500">
                 Die Bücheria wurde von Anna-Sophia Unterstab im Rahmen ihrer Masterarbeit 2022 ins Leben gerufen. 
-                Im Reiherstiegviertel in Hamburg-Wilhelmsburg befindet sich heute der Begegnungsort und bietet Bücher zu alltagsfeministischen Themen, die von Frauen und queeren Menschen geschrieben wurden, darunter Romane, Gedichtbände, Comics, Biografien, Kinder- und Jugendbücher sowie Sachbücher.
-                Bücher sind Werkzeuge, die dabei helfen, den Alltag zu reflektieren, Zuflucht zu finden und andere Lebensentwürfe aufzuzeigen. Die Bibliothek ist ein mit der Community selbst gestalteter Ort, an dem selbstorganisiert im halb-öffentlichen Raum feministische Wissensproduktion und gesellschaftliche Veränderung praktiziert werden.
+                Im Reiherstiegviertel in Hamburg-Wilhelmsburg befindet sich heute der Begegnungsort und bietet Bücher 
+                zu alltagsfeministischen Themen, die von Frauen und queeren Menschen geschrieben wurden, darunter Romane, 
+                Gedichtbände, Comics, Biografien, Kinder- und Jugendbücher sowie Sachbücher.
+            </p>
+            <p className="mt-4 text-gray-600 dark:text-slate-500">
+                Bücher sind Werkzeuge, die dabei helfen, den Alltag zu reflektieren, Zuflucht zu finden und andere Lebensentwürfe 
+                aufzuzeigen. Die Bibliothek ist ein mit der Community selbst gestalteter Ort, an dem selbstorganisiert im 
+                halb-öffentlichen Raum feministische Wissensproduktion und gesellschaftliche Veränderung praktiziert werden.
             </p>
 
             <div className="mt-12 pt-10 border-t border-gray-200 dark:border-slate-700">
